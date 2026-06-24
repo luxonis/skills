@@ -1,0 +1,16 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "luxonis",
+  "description": "Luxonis agent skills for OAK cameras, DepthAI, device setup, troubleshooting, and OAK app proofs of concept.",
+  "owner": {
+    "name": "Luxonis",
+    "url": "https://www.luxonis.com"
+  },
+  "plugins": [
+    {
+      "name": "luxonis",
+      "source": "./",
+      "description": "Skills for Luxonis OAK cameras, DepthAI, device setup, troubleshooting, and OAK app proofs of concept."
+    }
+  ]
+}

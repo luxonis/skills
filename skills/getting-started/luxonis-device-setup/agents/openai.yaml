@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Device Setup"
+  short_description: "Bring a Luxonis OAK camera to a verified device-ready state."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Project Interview"
+  short_description: "Interview the user and write a buildable Luxonis project brief."
+policy:
+  allow_implicit_invocation: false

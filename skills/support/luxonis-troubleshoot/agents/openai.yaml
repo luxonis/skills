@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Troubleshoot"
+  short_description: "Manual-only skill for diagnosing Luxonis/OAK app and device issues."
+policy:
+  allow_implicit_invocation: false

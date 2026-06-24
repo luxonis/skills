@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Guide"
+  short_description: "Manual-only router for choosing the right Luxonis skill."
+policy:
+  allow_implicit_invocation: false

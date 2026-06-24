@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Build POC"
+  short_description: "Manual-only placeholder for building a thin Luxonis proof of concept."
+policy:
+  allow_implicit_invocation: false
