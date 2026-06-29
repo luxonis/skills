@@ -3,10 +3,9 @@ name: luxonis-project-interview
 description: "Interview the user and produce a buildable Luxonis project brief."
 disable-model-invocation: true
 argument-hint: "project idea or application goal"
-allowed-tools: Bash(cat *) Bash(ls *) Bash(head *)
 metadata:
   author: luxonis
-  version: "0.2.2"
+  version: "0.2.3"
   status: draft
 ---
 
@@ -36,27 +35,8 @@ Luxonis interaction.
 
 ## 1. Preflight
 
-Before interviewing, inspect only the current working directory.
-
-### Preflight snapshot ($PWD)
-
-On agents that support shell injection (e.g. Claude Code), the snapshot below is filled in
-before the interview starts. On agents that do not, these lines may appear literally; ignore
-them and read the files yourself as described under "Read if present".
-
-Existing brief:
-
-!`cat PROJECT_BRIEF.md 2>/dev/null || echo none`
-
-Device facts:
-
-!`cat DEVICE.md 2>/dev/null || echo none`
-
-Project files:
-
-!`ls -1 2>/dev/null; echo ---; head -40 README.md 2>/dev/null`
-
-Read if present (use the snapshot above when it already contains these; otherwise read them):
+Before interviewing, inspect only the current working directory. List it, then read any of
+these that are present:
 
 - `PROJECT_BRIEF.md`
 - `DEVICE.md`

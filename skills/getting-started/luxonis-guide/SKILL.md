@@ -3,10 +3,10 @@ name: luxonis-guide
 description: "Choose the right Luxonis skill for your current situation."
 disable-model-invocation: true
 argument-hint: "what are you trying to do?"
-allowed-tools: Bash(ls *) Bash(cat *)
+allowed-tools: Bash(ls *) Bash(cat *) Bash(grep *) Bash(echo *) Bash(head *) Bash(true)
 metadata:
   author: luxonis
-  version: "0.2.0"
+  version: "0.2.1"
   status: draft
 ---
 
@@ -48,7 +48,8 @@ deep-parse.
 !`cat PROJECT_BRIEF.md 2>/dev/null | head -3 || true`
 
 On agents that support shell injection (e.g. Claude Code) the lines above are filled in
-before routing. On agents that do not, ignore them and run the same `ls`/`cat` yourself.
+before routing. On agents that do not, ignore them and list the directory / read
+`PROJECT_BRIEF.md` yourself.
 
 Combine the markers with what the user said:
 

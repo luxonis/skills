@@ -5,7 +5,7 @@ disable-model-invocation: true
 argument-hint: "symptom, error/log, or app path"
 metadata:
   author: luxonis
-  version: "0.2.0"
+  version: "0.2.1"
   status: draft
 ---
 
@@ -29,15 +29,9 @@ declare **fixed** without a passing rerun.
 
 ## 1. Preflight
 
-Read the working directory and the user's input. Do not re-interrogate the user about facts
-a prior session already captured.
-
-!`cat DEVICE.md 2>/dev/null || echo "no DEVICE.md"`
-
-!`cat PROJECT_BRIEF.md 2>/dev/null | head -20 || echo "no PROJECT_BRIEF.md"`
-
-On agents that support shell injection (e.g. Claude Code) the lines above are filled in
-before diagnosis. On agents that do not, ignore them and read the files yourself.
+Read the working directory and the user's input. If present, read `DEVICE.md` and
+`PROJECT_BRIEF.md`. Do not re-interrogate the user about facts a prior session already
+captured.
 
 - `DEVICE.md` — reuse verified device facts (model/family/connection/id) instead of
   re-probing.
