@@ -5,7 +5,7 @@ disable-model-invocation: true
 argument-hint: "project idea or application goal"
 metadata:
   author: luxonis
-  version: "0.2.3"
+  version: "0.2.4"
   status: draft
 ---
 
@@ -65,24 +65,24 @@ If the user does not have a device yet, continue and record that as an assumptio
 Drive toward these required fields. Skip any already answered by preflight or the user's
 initial idea.
 
-1. **Device availability** — "Which Luxonis camera/device do you have for the first demo? If
+1. **Device availability** -- "Which Luxonis camera/device do you have for the first demo? If
    you don't have one yet, say `not yet`."
-2. **Desired run location** — "For the first demo, should this run on your laptop/computer
+2. **Desired run location** -- "For the first demo, should this run on your laptop/computer
    connected to the camera, on a small on-site computer, directly on the camera without a
    computer connected, or are you not sure yet?"
-3. **Real-world goal** — "What should this help someone do or decide in the real world?"
-4. **One primary demo behavior** — detect/classify, count, track movement, measure, read
+3. **Real-world goal** -- "What should this help someone do or decide in the real world?"
+4. **One primary demo behavior** -- detect/classify, count, track movement, measure, read
    text/codes, guide navigation, save evidence, or another single behavior.
-5. **Targets / events** — exact objects, people, actions, states, or events, using the
+5. **Targets / events** -- exact objects, people, actions, states, or events, using the
    customer's words.
-6. **First scene** — where the camera is placed, what is in view, rough distance, and what
+6. **First scene** -- where the camera is placed, what is in view, rough distance, and what
    makes the scene difficult.
-7. **Outputs / actions** — what the user sees, saves, receives, or triggers when it works.
-8. **Success criteria** — observable demo checks, not ML metrics unless the user provides
+7. **Outputs / actions** -- what the user sees, saves, receives, or triggers when it works.
+8. **Success criteria** -- observable demo checks, not ML metrics unless the user provides
    them.
-9. **Sample media / replay** — whether photos, video, or a short real-scene recording can be
+9. **Sample media / replay** -- whether photos, video, or a short real-scene recording can be
    captured for implementation and verification.
-10. **First demo vs later** — the smallest demo that proves value, and what belongs later.
+10. **First demo vs later** -- the smallest demo that proves value, and what belongs later.
 
 Use plain examples only when the user is stuck. Example primary behaviors:
 
@@ -107,23 +107,23 @@ when they materially affect the first demo.
 Do not turn the interview into a full consulting checklist. Ask these only when they materially
 affect the first demo or feasibility.
 
-- **False alarms** — if targets are ambiguous: "What should it ignore, even if it looks
+- **False alarms** -- if targets are ambiguous: "What should it ignore, even if it looks
   similar?"
-- **Privacy** — if people, faces, license plates, private areas, or sensitive footage may be
+- **Privacy** -- if people, faces, license plates, private areas, or sensitive footage may be
   visible.
-- **Internet/offline** — if cloud services, model downloads, remote dashboards, or offline use
+- **Internet/offline** -- if cloud services, model downloads, remote dashboards, or offline use
   are mentioned.
-- **Zones/lines/regions** — if counting, safety, measurement, shelves, doorways, paths, or
+- **Zones/lines/regions** -- if counting, safety, measurement, shelves, doorways, paths, or
   alerts depend on a physical area in the image.
-- **One camera vs multiple views** — if the scene cannot be covered by one camera.
-- **Operator interaction** — if the demo may need someone to click/select/configure a target,
+- **One camera vs multiple views** -- if the scene cannot be covered by one camera.
+- **Operator interaction** -- if the demo may need someone to click/select/configure a target,
   region, threshold, or recording.
-- **Integrations** — only after the core demo behavior is clear.
-- **Audience** — if who judges the demo changes the output, action, or success criteria.
-- **Timeline** — if scope pressure matters.
-- **Common vs site-specific target** — if recognition feasibility is unclear: "Are these common
+- **Integrations** -- only after the core demo behavior is clear.
+- **Audience** -- if who judges the demo changes the output, action, or success criteria.
+- **Timeline** -- if scope pressure matters.
+- **Common vs site-specific target** -- if recognition feasibility is unclear: "Are these common
   everyday things, or specific to your business/site/product/process?"
-- **Approximation** — if the target sounds site-specific or specialized: "For the first demo, is
+- **Approximation** -- if the target sounds site-specific or specialized: "For the first demo, is
   a rough stand-in target acceptable?" (Example/model readiness is checked post-brief, so judge
   this from how the user describes the target, not from a model search.)
 
@@ -203,22 +203,24 @@ changes the core project.
 Only after `PROJECT_BRIEF.md` is written, optionally look for existing Luxonis baselines. This
 has zero effect on whether the brief is complete.
 
-Use `~/.luxonis/agent-context/oak-examples` as the local reference checkout.
+Use `~/.luxonis/agent-context/oak-examples` as the local reference checkout, sourced the safe
+way:
 
-- If missing, clone it:
-
-  ```bash
-  mkdir -p ~/.luxonis/agent-context
-  git clone --depth 1 https://github.com/luxonis/oak-examples ~/.luxonis/agent-context/oak-examples
-  ```
-
-- If present, update it without asking:
+- Create the directory `~/.luxonis/agent-context` (in the user's home) if it does not exist.
+- Clone over HTTPS, shallow and pinned to `main` (which tracks DepthAI v3), bounded so a stalled
+  network aborts instead of hanging; clone into a temporary path and move it into place only on
+  success:
 
   ```bash
-  git -C ~/.luxonis/agent-context/oak-examples pull --ff-only
+  git clone --depth 1 --single-branch --branch main \
+    -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 \
+    https://github.com/luxonis/oak-examples <tmp> && mv <tmp> ~/.luxonis/agent-context/oak-examples
   ```
 
-If clone/update fails, report the short reason and continue. The brief is already complete.
+  If it already exists, refresh with `git -C ~/.luxonis/agent-context/oak-examples pull --ff-only`.
+- A checkout is usable only if it contains `INDEX.md`. If the clone fails or is incomplete,
+  report the short reason and continue -- the brief is already complete; never rely on a partial
+  checkout or older/v2 examples.
 
 To recommend an example:
 
@@ -236,9 +238,9 @@ model or documented pattern likely exists.
 
 Report one readiness tier in chat, not in the brief unless the user asks:
 
-- **Ready baseline likely exists** — close OAK example and/or Model Zoo model.
-- **Approximate demo possible** — nearby example/model, but not exact target.
-- **Dataset/training likely needed** — no obvious existing example/model fit.
+- **Ready baseline likely exists** -- close OAK example and/or Model Zoo model.
+- **Approximate demo possible** -- nearby example/model, but not exact target.
+- **Dataset/training likely needed** -- no obvious existing example/model fit.
 
 If dataset/training is likely needed, recommend sample capture and model/data requirements; do
 not claim to train the model.
