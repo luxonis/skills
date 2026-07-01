@@ -84,7 +84,6 @@ are ready to adapt one:
 
   ```bash
   git clone --depth 1 --single-branch --branch main \
-    -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 \
     https://github.com/luxonis/oak-examples <tmp> && mv <tmp> ~/.luxonis/agent-context/oak-examples
   ```
 
