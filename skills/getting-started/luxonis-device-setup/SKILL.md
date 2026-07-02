@@ -5,7 +5,7 @@ disable-model-invocation: true
 argument-hint: "device model, OS, and connection topology"
 metadata:
   author: luxonis
-  version: "0.1.5"
+  version: "0.1.6"
   status: draft
 ---
 
@@ -17,9 +17,9 @@ proves it is usable from this host. Stop there; route app-building to
 
 End in exactly one state:
 
-- **device-ready** — report model/family, connection, device id/IP/serial, and the exact
+- **device-ready** -- report model/family, connection, device id/IP/serial, and the exact
   verification command or snippet.
-- **blocked** — report one blocking layer, evidence, and the next action.
+- **blocked** -- report one blocking layer, evidence, and the next action.
 
 ## 1. Probe before asking
 
@@ -34,9 +34,9 @@ First run a **discovery pass**, not a verification pass:
 
 Family rules:
 
-- **OAK / RVC2** — DepthAI only. It never appears in `oakctl`. USB models may first appear
+- **OAK / RVC2** -- DepthAI only. It never appears in `oakctl`. USB models may first appear
   as `03e7:2485` Movidius/MyriadX; PoE RVC2 is still DepthAI.
-- **OAK4 / RVC4** — factory-state devices can be verified with DepthAI. `oakctl` is for the
+- **OAK4 / RVC4** -- factory-state devices can be verified with DepthAI. `oakctl` is for the
   managed control plane: Hub adoption, standalone app/device management, updates, USB
   internet sharing. Once adopted/configured into managed mode, manage it via Hub or `oakctl`.
 
@@ -62,11 +62,11 @@ After the target is identified, pin later commands to that device id/IP/serial.
 
 Use the smallest rerunnable check that matches the device state:
 
-- **Factory OAK4 / RVC4** — a throwaway DepthAI device-info/frame check is enough for
+- **Factory OAK4 / RVC4** -- a throwaway DepthAI device-info/frame check is enough for
   baseline readiness. Do not install `oakctl` just because the model is OAK4.
-- **OAK / RVC2** — use DepthAI; confirm the device opens and streams a frame. On Linux USB,
+- **OAK / RVC2** -- use DepthAI; confirm the device opens and streams a frame. On Linux USB,
   add the Movidius udev rule only if permissions block access.
-- **Managed OAK4 / RVC4** — use Hub or `oakctl` only after the target gate selects that
+- **Managed OAK4 / RVC4** -- use Hub or `oakctl` only after the target gate selects that
   managed device. If `oakctl` is required and absent, ask the user to install it themselves:
   Linux/macOS installer:
   `bash -c "$(curl -fsSL https://oakctl-releases.luxonis.com/oakctl-installer.sh)"`
@@ -82,13 +82,13 @@ Use the smallest rerunnable check that matches the device state:
 
 Change one thing, rerun the same verification, observe.
 
-- **PoE/Ethernet** — red LED on OAK4: insufficient power, require PoE+ 802.3at / 30W. No
+- **PoE/Ethernet** -- red LED on OAK4: insufficient power, require PoE+ 802.3at / 30W. No
   DHCP: use link-local `169.254.0.0/16` or fix DHCP. Discovery blocked: disable VPN, check
   routing, allow `11491/udp` and `11490/tcp` for OAK4.
-- **USB** — no devices or USB2 fallback: use a USB3 port and known-good USB3 cable (<2 m).
+- **USB** -- no devices or USB2 fallback: use a USB3 port and known-good USB3 cable (<2 m).
   Brownout: external power/powered hub. Linux permission error: add the udev rule. RVC2
   flaky USB3: try forcing USB2 (`maxUsbSpeed=dai.UsbSpeed.HIGH`).
-- **Tool mismatch** — RVC2 in `oakctl` is expected to fail; switch to DepthAI. OAK4
+- **Tool mismatch** -- RVC2 in `oakctl` is expected to fail; switch to DepthAI. OAK4
   management issues belong to Hub/`oakctl`; update tools only when needed and with approval.
 
 ## 4. Persist handoff context
@@ -131,12 +131,12 @@ modified.
   not install or drive it as the agent path.
 - Confirm device updates, flashing, factory reset, and Hub adoption before doing them.
 - Never compile DepthAI from source; if that seems required, mark **blocked**.
-- Orange LED, boot failure, or suspected calibration fault → **blocked** and contact
+- Orange LED, boot failure, or suspected calibration fault -> **blocked** and contact
   support@luxonis.com.
 
 ## Docs
 
-- OAK4 getting started — https://docs.luxonis.com/hardware/platform/deploy/oak4-deployment-guide/oak4-getting-started.md
-- OAK USB getting started — https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide.md
-- DepthAI Device Information — https://docs.luxonis.com/software-v3/depthai/examples/misc/device_information.md
-- `oakctl` CLI — https://docs.luxonis.com/software-v3/oak-apps/oakctl.md
+- OAK4 getting started -- https://docs.luxonis.com/hardware/platform/deploy/oak4-deployment-guide/oak4-getting-started.md
+- OAK USB getting started -- https://docs.luxonis.com/hardware/platform/deploy/usb-deployment-guide.md
+- DepthAI Device Information -- https://docs.luxonis.com/software-v3/depthai/examples/misc/device_information.md
+- `oakctl` CLI -- https://docs.luxonis.com/software-v3/oak-apps/oakctl.md
