@@ -1,7 +1,7 @@
 {
   "name": "luxonis",
   "displayName": "Luxonis Skills",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Skills for Luxonis OAK cameras, DepthAI, device setup, troubleshooting, and OAK app proofs of concept.",
   "author": {
     "name": "Luxonis",

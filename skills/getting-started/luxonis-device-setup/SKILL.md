@@ -5,8 +5,8 @@ disable-model-invocation: true
 argument-hint: "device model, OS, and connection topology"
 metadata:
   author: luxonis
-  version: "0.1.6"
-  status: draft
+  version: "1.0.0"
+  status: stable
 ---
 
 # Luxonis Device Setup

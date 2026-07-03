@@ -5,8 +5,8 @@ disable-model-invocation: true
 argument-hint: "project idea or application goal"
 metadata:
   author: luxonis
-  version: "0.2.4"
-  status: draft
+  version: "1.0.0"
+  status: stable
 ---
 
 # Luxonis Project Interview
@@ -207,17 +207,13 @@ Use `~/.luxonis/agent-context/oak-examples` as the local reference checkout, sou
 way:
 
 - Create the directory `~/.luxonis/agent-context` (in the user's home) if it does not exist.
-- Clone over HTTPS, shallow and pinned to `main` (which tracks DepthAI v3), bounded so a stalled
-  network aborts instead of hanging; clone into a temporary path and move it into place only on
-  success:
-
-  ```bash
-  git clone --depth 1 --single-branch --branch main \
-    -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 \
-    https://github.com/luxonis/oak-examples <tmp> && mv <tmp> ~/.luxonis/agent-context/oak-examples
-  ```
-
-  If it already exists, refresh with `git -C ~/.luxonis/agent-context/oak-examples pull --ff-only`.
+- Clone `https://github.com/luxonis/oak-examples` over **HTTPS** (never SSH), shallow and
+  pinned to `main` (which tracks DepthAI v3), with git's low-speed guard
+  (`http.lowSpeedLimit=1000`, `http.lowSpeedTime=60`) so a stalled network aborts instead of
+  hanging. Clone into a temporary sibling path (e.g. `oak-examples.tmp`) and rename it into
+  place only on success, using commands appropriate to the host shell, so a failed clone never
+  leaves a partial checkout behind. If the checkout already exists, refresh it with a
+  fast-forward-only pull instead.
 - A checkout is usable only if it contains `INDEX.md`. If the clone fails or is incomplete,
   report the short reason and continue -- the brief is already complete; never rely on a partial
   checkout or older/v2 examples.

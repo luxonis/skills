@@ -5,8 +5,8 @@ disable-model-invocation: true
 argument-hint: "project brief path or application goal"
 metadata:
   author: luxonis
-  version: "0.2.1"
-  status: draft
+  version: "1.0.0"
+  status: stable
 ---
 
 # Luxonis Build POC
@@ -29,7 +29,8 @@ End in exactly one state:
   call to an example you cloned or a docs page you read.
 - **Confirm the `depthai` version before writing pipeline code.** Always target DepthAI v3,
   never v2 -- they differ sharply; match the installed major version and never mix v2 API into
-  v3 code. On RVC4, `ColorCamera`/`MonoCamera` are deprecated -- use the `Camera` node.
+  v3 code. In DepthAI v3, `ColorCamera`/`MonoCamera` are deprecated on all platforms (RVC2
+  and RVC4 alike) -- use the `Camera` node.
 - **One vertical slice first.** Get a single path running end-to-end before adding any second
   behavior, option, or polish.
 - **Never compile DepthAI from source.** If that seems required -> **blocked**.
@@ -78,16 +79,13 @@ are ready to adapt one:
 
 - Create the directory `~/.luxonis/agent-context` (the `.luxonis/agent-context` folder in the
   user's home) if it does not exist.
-- Clone over **HTTPS** (never SSH), shallow and pinned to `main`, bounded so a stalled network
-  aborts instead of hanging. Clone into a temporary path and move it into place only on success,
-  so a failed clone never leaves a partial checkout behind:
-
-  ```bash
-  git clone --depth 1 --single-branch --branch main \
-    https://github.com/luxonis/oak-examples <tmp> && mv <tmp> ~/.luxonis/agent-context/oak-examples
-  ```
-
-  If it already exists, refresh with `git -C ~/.luxonis/agent-context/oak-examples pull --ff-only`.
+- Clone `https://github.com/luxonis/oak-examples` over **HTTPS** (never SSH), shallow and
+  pinned to `main`, with git's low-speed guard (`http.lowSpeedLimit=1000`,
+  `http.lowSpeedTime=60`) so a stalled network aborts instead of hanging. Clone into a
+  temporary sibling path (e.g. `oak-examples.tmp`) and rename it into place only on success,
+  using commands appropriate to the host shell, so a failed clone never leaves a partial
+  checkout behind. If the checkout already exists, refresh it with a fast-forward-only pull
+  instead.
 - A checkout is usable only if it contains `INDEX.md`. If the clone fails or the directory is
   incomplete, treat examples as **unavailable** and fall back to live docs. Never read a partial
   checkout, and never substitute web-searched, older, or v2-era examples: always DepthAI v3,

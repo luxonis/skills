@@ -11,7 +11,7 @@ problems.
 | `luxonis-guide` | Points you to the right skill for your situation. |
 | `luxonis-device-setup` | Brings a Luxonis OAK camera to a verified, working state. |
 | `luxonis-project-interview` | Interviews you and writes a buildable project brief. |
-| `luxonis-build-poc` | Builds a thin runnable proof of concept from a brief. *(coming soon)* |
+| `luxonis-build-poc` | Builds a thin runnable proof of concept from a brief. |
 | `luxonis-troubleshoot` | Diagnoses broken, slow, or confusing OAK apps and device setups. |
 
 ### How they fit together
@@ -60,6 +60,7 @@ own. Invoke by name:
 /luxonis-guide
 /luxonis-device-setup
 /luxonis-project-interview
+/luxonis-build-poc
 /luxonis-troubleshoot
 ```
 
@@ -85,3 +86,7 @@ If a skill populated it earlier, later runs reuse it.
 For hardware faults (orange LED, boot failure, suspected calibration) or issues the skills
 can't resolve locally, contact [support@luxonis.com](mailto:support@luxonis.com) or see the
 [Luxonis documentation](https://docs.luxonis.com).
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE).
