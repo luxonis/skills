@@ -1,6 +1,6 @@
 # Skill writing style
 
-This repo should follow a Matt Pocock-inspired skill style: compact, precise, and designed to produce predictable agent behavior.
+Skills in this repo are compact, precise, and designed to produce predictable agent behavior.
 
 ## Core rules
 
@@ -30,15 +30,6 @@ description: "Use when the user mentions OAK, USB, PoE, device discovery, troubl
 ```
 
 Trigger phrases are wasted when `disable-model-invocation: true` is set.
-
-## References to emulate
-
-- Matt's [`writing-great-skills`](https://github.com/mattpocock/skills/blob/main/skills/productivity/writing-great-skills/SKILL.md): vocabulary for predictability, information hierarchy, pruning, leading words.
-- Matt's [`ask-matt`](https://github.com/mattpocock/skills/blob/main/skills/engineering/ask-matt/SKILL.md): router skill structure.
-- Matt's [`grilling`](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md): one-question-at-a-time interview loop.
-- Matt's [`grill-with-docs`](https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs/SKILL.md): user-invoked wrapper over a sharper interview/documentation discipline.
-- Matt's [`diagnosing-bugs`](https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnosing-bugs/SKILL.md): disciplined diagnosis loop and tight feedback loop.
-- Matt's [`tdd`](https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md): vertical slices and tracer bullets.
 
 ## How to write a new skill
 
