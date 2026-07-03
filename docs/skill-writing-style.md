@@ -40,9 +40,9 @@ Trigger phrases are wasted when `disable-model-invocation: true` is set.
 - Matt's [`diagnosing-bugs`](https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnosing-bugs/SKILL.md): disciplined diagnosis loop and tight feedback loop.
 - Matt's [`tdd`](https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md): vertical slices and tracer bullets.
 
-## How to replace a placeholder
+## How to write a new skill
 
-When turning a placeholder into a real skill:
+When adding a new skill:
 
 1. Start from real Luxonis source material: docs, support tickets, known failure modes, benchmark transcripts, OAK examples, app team feedback.
 2. Define the leading word for the skill.

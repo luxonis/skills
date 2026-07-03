@@ -6,8 +6,8 @@ argument-hint: "what are you trying to do?"
 allowed-tools: Bash(ls *) Bash(cat *) Bash(grep *) Bash(echo *) Bash(head *) Bash(true)
 metadata:
   author: luxonis
-  version: "0.2.2"
-  status: draft
+  version: "1.0.0"
+  status: stable
 ---
 
 # Luxonis Guide
