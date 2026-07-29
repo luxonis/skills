@@ -12,6 +12,7 @@ problems.
 | `luxonis-device-setup` | Brings a Luxonis OAK camera to a verified, working state. |
 | `luxonis-project-interview` | Interviews you and writes a buildable project brief. |
 | `luxonis-build-poc` | Builds a thin runnable proof of concept from a brief. |
+| `luxonis-inspect-pipeline` | Verifies a running app from its live pipeline outputs. |
 | `luxonis-troubleshoot` | Diagnoses broken, slow, or confusing OAK apps and device setups. |
 
 ### How they fit together
@@ -21,6 +22,7 @@ Most work runs along one path, with troubleshooting available at any point:
 1. **Get the camera working** → `luxonis-device-setup`
 2. **Turn your idea into a brief** → `luxonis-project-interview`
 3. **Build the demo** → `luxonis-build-poc`
+4. **Verify its live outputs** → `luxonis-inspect-pipeline`
 
 Steps 1 and 2 are order-flexible — you can shape the idea before the hardware arrives. If
 something breaks along the way, reach for `luxonis-troubleshoot`. Not sure where to start?
@@ -53,14 +55,16 @@ npx skills@latest add luxonis/skills
 
 ## Using the skills
 
-All skills are **manual-only** — you invoke them explicitly, they never trigger on their
-own. Invoke by name:
+Most skills are **manual-only** and run when explicitly invoked. `luxonis-inspect-pipeline`
+may trigger automatically when an agent needs to verify a running app from its live outputs.
+Any skill can still be invoked by name:
 
 ```text
 /luxonis-guide
 /luxonis-device-setup
 /luxonis-project-interview
 /luxonis-build-poc
+/luxonis-inspect-pipeline
 /luxonis-troubleshoot
 ```
 

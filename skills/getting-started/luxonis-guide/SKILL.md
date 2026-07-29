@@ -25,11 +25,12 @@ End in exactly one state:
 
 Most work runs along one spine, with one side path.
 
-**Main flow: idea -> working demo**
+**Main flow: idea -> verified demo**
 
 1. **Get the camera working** -> `luxonis-device-setup`
 2. **Turn the idea into a brief** -> `luxonis-project-interview`
 3. **Build the thin PoC** -> `luxonis-build-poc`
+4. **Verify its live pipeline outputs** -> `luxonis-inspect-pipeline`
 
 Steps 1 and 2 are **order-flexible**: the interview works with no device yet, so a user
 waiting on hardware can sharpen the idea first. Step 3 is the convergence point -- it wants
@@ -64,6 +65,8 @@ Map the situation to one entry:
 - Has a working camera (or `DEVICE.md`) but no `PROJECT_BRIEF.md`, and wants to build
   something -> **`luxonis-project-interview`**.
 - `PROJECT_BRIEF.md` exists and the user wants it running -> **`luxonis-build-poc`**.
+- A running DepthAI v3 app needs visual/output verification ->
+  **`luxonis-inspect-pipeline`**.
 - An app, pipeline, or device **discovery** is broken, slow, or confusing ->
   **`luxonis-troubleshoot`**.
 
@@ -98,7 +101,7 @@ Plugin installs may namespace the command, e.g. `/luxonis:luxonis-device-setup`.
 
 - Hardware fault (orange LED, boot failure, calibration) -> `support@luxonis.com`.
 - V2 -> V3 migration -> no skill yet; point to the docs below (a skill may come later).
-- Anything else outside the four skills (non-OAK hardware, production/fleet deployment at
+- Anything else outside the five skills (non-OAK hardware, production/fleet deployment at
   scale) -> name it and point to https://docs.luxonis.com.
 
 ## Docs
