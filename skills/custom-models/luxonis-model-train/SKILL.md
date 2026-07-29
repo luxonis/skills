@@ -88,10 +88,10 @@ Run the approved training command:
 luxonis_train train --config ./config.yaml
 ```
 
-Report real test metrics, per-class metrics, and a confusion
-matrix when available. State whether `TestOnTrainEnd` or a separate test command produced them
-and which checkpoint/model state they evaluate. Do not tune to chase a PoC number; stop and
-escalate if results are near chance or violate the approved gate.
+Report real test metrics, per-class metrics, and a confusion matrix when available. State
+whether `TestOnTrainEnd` or a separate test command produced them and which checkpoint/model
+state they evaluate. Do not tune to chase a PoC number; stop and escalate if results are near
+chance or violate the approved gate.
 
 ## 4. Convert and validate
 

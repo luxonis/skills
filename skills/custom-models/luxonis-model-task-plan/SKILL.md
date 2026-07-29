@@ -57,9 +57,10 @@ hubai model ls
 hubai model info <slug>
 ```
 
-Verify the CLI help and installed SDK when signatures differ. Search the task's synonyms, adjacent tasks, and stages that could be split differently.
-Record why each stage is reused or custom-trained. Check the installed `depthai-nodes` parser
-and output message before declaring a custom parser necessary.
+Verify the CLI help and installed SDK when signatures differ. Search the task's synonyms,
+adjacent tasks, and stages that could be split differently. Record why each stage is reused
+or custom-trained. Check the installed `depthai-nodes` parser and output message before
+declaring a custom parser necessary.
 
 If `HUBAI_API_KEY` is absent, ask the user to provide it through the process environment. Do
 not fabricate Zoo results; treat unavailable Zoo access as **blocked** rather than assuming no
