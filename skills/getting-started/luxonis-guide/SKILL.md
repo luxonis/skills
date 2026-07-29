@@ -67,8 +67,6 @@ Map the situation to one entry:
 - `PROJECT_BRIEF.md` exists and the user wants it running -> **`luxonis-build-poc`**.
 - The brief needs a model absent from the Zoo and approved custom training ->
   **`luxonis-custom-model-app`**.
-- The brief may be served by a Zoo model -> **`luxonis-build-poc`**; search the Zoo before
-  routing to custom training.
 - An app, pipeline, or device **discovery** is broken, slow, or confusing ->
   **`luxonis-troubleshoot`**.
 

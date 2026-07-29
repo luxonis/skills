@@ -80,7 +80,7 @@ on-device validation.
 ## Docs
 
 - Docs source map -- https://docs.luxonis.com/llms.txt
-- DepthAI v3 -- https://docs.luxonis.com/software-v3/depthai/
-- OAK apps -- https://docs.luxonis.com/software-v3/oak-apps/
+- DepthAI v3 -- https://docs.luxonis.com/software-v3/depthai.md
+- OAK apps -- https://docs.luxonis.com/software-v3/oak-apps.md
 - `oakapp.toml` -- https://docs.luxonis.com/software-v3/oak-apps/configuration.md
 - OAK examples -- https://github.com/luxonis/oak-examples

@@ -57,17 +57,20 @@ hubai model ls
 hubai model info <slug>
 ```
 
-Verify the CLI help and installed SDK when signatures differ. Search animal pose, keypoints,
-dog/animal detection, general keypoints, human pose, and retrainable-adjacent alternatives.
+Verify the CLI help and installed SDK when signatures differ. Search the task's synonyms, adjacent tasks, and stages that could be split differently.
 Record why each stage is reused or custom-trained. Check the installed `depthai-nodes` parser
 and output message before declaring a custom parser necessary.
 
+If `HUBAI_API_KEY` is absent, ask the user to provide it through the process environment. Do
+not fabricate Zoo results; treat unavailable Zoo access as **blocked** rather than assuming no
+reusable model exists.
+
 ## 4. Data and archive plan
 
-If training remains necessary, name the candidate datasets, dog/object counts, keypoint order,
-skeleton, visibility, license, download result, and exact Luxonis ML parser. Require deployment-
-domain and runtime-framing validation. Define the LDF `instance_id`, normalized keypoint
-triplets, and explicit skeleton metadata before dataset work.
+If training remains necessary, name candidate datasets, object/instance counts, annotation
+order, skeleton, visibility, license, download result, and exact Luxonis ML parser. Require
+deployment-domain and runtime-framing validation. Define the LDF `instance_id`, normalized
+keypoint triplets, and explicit skeleton metadata before dataset work.
 
 ## 5. Approval gate
 
@@ -79,6 +82,6 @@ substitution and wait for approval rather than silently remapping it.
 ## Docs
 
 - Docs source map -- https://docs.luxonis.com/llms.txt
-- Model Zoo -- https://docs.luxonis.com/software-v3/ai-hub/
+- Model Zoo -- https://models.luxonis.com
 - Luxonis ML -- https://github.com/luxonis/luxonis-ml
-- [Counting reference](https://github.com/luxonis/oak-examples/tree/main/neural-networks/counting/cumulative-object-counting)
+- Counting reference -- https://github.com/luxonis/oak-examples/tree/main/neural-networks/counting/cumulative-object-counting

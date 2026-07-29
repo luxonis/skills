@@ -34,14 +34,24 @@ End in exactly one state:
 
 ## 1. Select and score sources
 
-Score at least two candidates for dog/object count, annotation semantics/order, skeleton,
+Score at least two candidates for object/instance count, annotation semantics/order, skeleton,
 visibility, license, parser support, domain fit, and actual downloadability. Attempt the top
 candidate and record the exact URL/command and result. Do not claim access from a landing page.
 
 Use only live Luxonis docs starting at `https://docs.luxonis.com/llms.txt` for current parser
-facts. Check `luxonis_ml.enums.DatasetType` in the active environment. Common keypoint formats
-are `COCO`, `YOLOV8KEYPOINTS`, and `ULTRALYTICSNDJSONKEYPOINTS`; unsupported source JSON needs a
-custom LDF generator.
+facts. Check `luxonis_ml.enums.DatasetType` in the active environment. In the installed
+`luxonis-ml 0.9.0`, enum member names are `COCO`, `YOLOV8KEYPOINTS`, and
+`ULTRALYTICSNDJSONKEYPOINTS`; the CLI takes their values `coco`, `yolov8keypoints`, and
+`ultralytics-ndjson-keypoints`. Unsupported source JSON needs a custom LDF generator.
+
+Parse a classification directory with the explicit task name:
+
+```bash
+luxonis_ml data parse ./dataset --name person_emotion --type clsdir \
+  --task-name emotion
+```
+
+Check `luxonis_ml data parse --help` before optional flags because CLI aliases are versioned.
 
 ## 2. Validate domain and annotations
 
@@ -54,7 +64,9 @@ folder labels or source framing fail, run a CPU detector over every candidate im
 - crop the box with a recorded margin so training framing matches `FrameCropper`;
 - record detector name, version, license, thresholds, margin, and per-class keep rates.
 
-Reject or surface sources with too few survivors. Keep a held-out deployment-domain set.
+Reject or surface sources with too few survivors, stating the minimum survivor count per
+class. If an approved class is absent, record the source labels, proposed mapping or
+substitution, and explicit user approval before parsing. Keep a held-out deployment-domain set.
 
 ## 3. Parse and enforce metadata
 
@@ -66,6 +78,12 @@ skeleton edges explicitly.
 For classification, count files directly by split and class because `get_statistics()` in
 some installed `luxonis-ml 0.9.0` builds does not expose classification distributions. Verify
 Parquet/split counts directly. Use `valid`, not `val`.
+
+Run the health check:
+
+```bash
+luxonis_ml data health <dataset_name>
+```
 
 ## 4. Deduplicate, split, and gate
 
@@ -81,5 +99,5 @@ LDF path and use the Docs links for the next stage.
 
 - Docs source map -- https://docs.luxonis.com/llms.txt
 - Luxonis ML -- https://github.com/luxonis/luxonis-ml
-- [Dataset parsing tutorial](https://github.com/luxonis/ai-tutorials/blob/main/training/dataset-preparation/dataset_parsing.ipynb)
-- [Custom dataset generator](https://github.com/luxonis/ai-tutorials/blob/main/training/dataset-preparation/custom_dataset_generator.ipynb)
+- Dataset parsing tutorial -- https://github.com/luxonis/ai-tutorials/blob/main/training/dataset-preparation/dataset_parsing.ipynb
+- Custom dataset generator -- https://github.com/luxonis/ai-tutorials/blob/main/training/dataset-preparation/custom_dataset_generator.ipynb

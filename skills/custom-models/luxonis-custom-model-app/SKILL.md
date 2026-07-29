@@ -27,8 +27,8 @@ End in exactly one state:
 
 <critical>
 - Search the Model Zoo before proposing training. Do not train what an acceptable public model
-  already solves. The dog-pose reconnaissance is the calibration case: SuperAnimal plus the
-  animal-pose example made training unnecessary.
+  already solves. For example, an animal-pose request may already be covered by a Zoo landmark
+  model plus the `animal-pose` example.
 - Do not train before the written task specification is approved.
 - Keep training/data and app-runtime tools in separate virtual environments.
 - Do not claim hardware success from host checks, and do not claim counting from per-frame
@@ -55,6 +55,10 @@ the project, but do not replace the shared marker convention with a custom `run-
 When a sibling skill is unavailable, preserve the same gate and use the relevant Docs links;
 do not silently skip it.
 
+If `HUBAI_API_KEY` is absent, ask the user to provide it through the process environment. Do
+not fabricate Zoo results. Treat missing credentials as **blocked** for archive conversion;
+do not proceed by presenting a checkpoint-only deliverable.
+
 ## 3. Cross-stage rules
 
 - Keep approved class names and order fixed from plan through archive and app labels.
@@ -68,6 +72,6 @@ do not silently skip it.
 ## Docs
 
 - Docs source map -- https://docs.luxonis.com/llms.txt
-- Model Zoo -- https://docs.luxonis.com/software-v3/ai-hub/
+- Model Zoo -- https://models.luxonis.com
 - OAK examples -- https://github.com/luxonis/oak-examples
 - Custom model training -- https://github.com/luxonis/ai-tutorials
