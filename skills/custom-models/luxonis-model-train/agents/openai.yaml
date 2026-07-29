@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Model Train"
+  short_description: "Train, convert, and validate a platform NN Archive."
+policy:
+  allow_implicit_invocation: false

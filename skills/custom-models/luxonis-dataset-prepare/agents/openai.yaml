@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Dataset Prepare"
+  short_description: "Prepare and gate a deployment-shaped Luxonis training dataset."
+policy:
+  allow_implicit_invocation: false

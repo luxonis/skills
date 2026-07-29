@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Model Integrate"
+  short_description: "Integrate a validated NN Archive into a standalone OAK app."
+policy:
+  allow_implicit_invocation: false

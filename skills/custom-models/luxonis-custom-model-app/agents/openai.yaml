@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Custom Model App"
+  short_description: "Route a gated custom-model workflow for a Luxonis OAK app."
+policy:
+  allow_implicit_invocation: false

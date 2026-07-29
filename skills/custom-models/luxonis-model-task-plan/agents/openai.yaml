@@ -1,0 +1,5 @@
+interface:
+  display_name: "Luxonis Model Task Plan"
+  short_description: "Decompose a model request and gate it on Zoo reuse and approval."
+policy:
+  allow_implicit_invocation: false
