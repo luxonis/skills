@@ -24,6 +24,7 @@
   "skills": [
     "./skills/getting-started",
     "./skills/building",
-    "./skills/support"
+    "./skills/support",
+    "./skills/custom-models"
   ]
 }

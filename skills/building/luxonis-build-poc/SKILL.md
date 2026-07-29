@@ -142,7 +142,8 @@ in chat (or a short `POC_NOTES.md` if the user wants it). Do not broaden scope u
   flashing, factory reset, Hub adoption, publishing an app -> confirm first. Building and
   running a dev app locally is fine.
 - **Models, not training.** Reuse DepthAI Model Zoo / example models. If the target needs a
-  custom model, say dataset/training is required -- do not claim to train one here.
+  custom model, keep this skill's refusal to train and route to
+  `/luxonis-custom-model-app` for the gated dataset/training workflow.
 - **WSL USB honesty.** Do not pretend WSL has USB access; stop until the user exposes the
   device or runs from a host with direct USB.
 - **Hardware fault** (orange LED, boot failure, suspected calibration) -> **blocked**, contact

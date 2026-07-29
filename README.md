@@ -13,6 +13,11 @@ problems.
 | `luxonis-project-interview` | Interviews you and writes a buildable project brief. |
 | `luxonis-build-poc` | Builds a thin runnable proof of concept from a brief. |
 | `luxonis-troubleshoot` | Diagnoses broken, slow, or confusing OAK apps and device setups. |
+| `luxonis-custom-model-app` | Routes and gates custom model planning, training, and app integration. |
+| `luxonis-model-task-plan` | Decomposes a model request and gates it on Zoo reuse and approval. |
+| `luxonis-dataset-prepare` | Prepares and validates a deployment-shaped LDF dataset. |
+| `luxonis-model-train` | Trains, converts, and validates a platform NN Archive. |
+| `luxonis-model-integrate` | Integrates a validated custom archive into a standalone OAK app. |
 
 ### How they fit together
 
@@ -21,6 +26,9 @@ Most work runs along one path, with troubleshooting available at any point:
 1. **Get the camera working** → `luxonis-device-setup`
 2. **Turn your idea into a brief** → `luxonis-project-interview`
 3. **Build the demo** → `luxonis-build-poc`
+4. **If no suitable Zoo model exists, plan and gate custom modeling** →
+   `luxonis-custom-model-app` → `luxonis-model-task-plan` →
+   `luxonis-dataset-prepare` → `luxonis-model-train` → `luxonis-model-integrate`
 
 Steps 1 and 2 are order-flexible — you can shape the idea before the hardware arrives. If
 something breaks along the way, reach for `luxonis-troubleshoot`. Not sure where to start?
@@ -62,6 +70,11 @@ own. Invoke by name:
 /luxonis-project-interview
 /luxonis-build-poc
 /luxonis-troubleshoot
+/luxonis-custom-model-app
+/luxonis-model-task-plan
+/luxonis-dataset-prepare
+/luxonis-model-train
+/luxonis-model-integrate
 ```
 
 Claude Code plugin installs may namespace skills by plugin name:

@@ -30,6 +30,7 @@ Most work runs along one spine, with one side path.
 1. **Get the camera working** -> `luxonis-device-setup`
 2. **Turn the idea into a brief** -> `luxonis-project-interview`
 3. **Build the thin PoC** -> `luxonis-build-poc`
+4. **Plan, train, and integrate a custom model** -> `luxonis-custom-model-app`
 
 Steps 1 and 2 are **order-flexible**: the interview works with no device yet, so a user
 waiting on hardware can sharpen the idea first. Step 3 is the convergence point -- it wants
@@ -64,6 +65,10 @@ Map the situation to one entry:
 - Has a working camera (or `DEVICE.md`) but no `PROJECT_BRIEF.md`, and wants to build
   something -> **`luxonis-project-interview`**.
 - `PROJECT_BRIEF.md` exists and the user wants it running -> **`luxonis-build-poc`**.
+- The brief needs a model absent from the Zoo and approved custom training ->
+  **`luxonis-custom-model-app`**.
+- The brief may be served by a Zoo model -> **`luxonis-build-poc`**; search the Zoo before
+  routing to custom training.
 - An app, pipeline, or device **discovery** is broken, slow, or confusing ->
   **`luxonis-troubleshoot`**.
 
