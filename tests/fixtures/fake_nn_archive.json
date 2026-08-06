@@ -1,0 +1,10 @@
+{
+  "input_size": [224, 224],
+  "heads": [
+    {
+      "parser": "Classification",
+      "classes": ["SKU-0042", "SKU-0177", "SKU-9001"],
+      "nClasses": 3
+    }
+  ]
+}

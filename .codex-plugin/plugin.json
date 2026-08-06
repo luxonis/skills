@@ -1,0 +1,41 @@
+{
+  "name": "luxonis",
+  "version": "2.0.0-alpha.1",
+  "description": "Experimental, unvalidated skills for planning, building, inspecting, and verifying use-case-specific OAK proofs of concept.",
+  "author": {
+    "name": "Luxonis",
+    "email": "support@luxonis.com",
+    "url": "https://www.luxonis.com"
+  },
+  "homepage": "https://github.com/luxonis/skills",
+  "repository": "https://github.com/luxonis/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "luxonis",
+    "oak",
+    "depthai",
+    "oak4",
+    "computer-vision",
+    "proof-of-concept"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Luxonis Skills V2 Lightweight (Draft)",
+    "shortDescription": "Experimental OAK proof-of-concept builder.",
+    "longDescription": "Use current Luxonis context and direct pipeline inspection to plan, build, troubleshoot, and verify a customer-specific OAK proof of concept.",
+    "developerName": "Luxonis",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write",
+      "MCP"
+    ],
+    "websiteURL": "https://www.luxonis.com",
+    "defaultPrompt": [
+      "Build an OAK proof of concept for my use case.",
+      "Inspect what my DepthAI pipeline produces.",
+      "Convert my model for this OAK device."
+    ]
+  }
+}

@@ -1,91 +1,39 @@
-# Luxonis Agent Skills
+# Luxonis Agent Skills: V2 Lightweight Draft
 
-Agent skills that help coding agents (Claude Code, Codex, Cursor) work with Luxonis OAK
-cameras and DepthAI — from getting a camera working, to shaping a project, to diagnosing
-problems.
+> Experimental direction only. This branch has not been benchmarked, tested with customer
+> workflows, or validated for release. It is not ready for customer use or merge.
 
-## Skills
+This draft explores the next step for Luxonis agent support: moving from example-level OAK
+onboarding to a working, use-case-specific proof of concept that an engineer can evaluate and
+extend. The Luxonis MCP supplies current platform facts; the skills add lightweight planning,
+implementation, model, troubleshooting, and direct pipeline-verification workflows.
 
-| Skill | What it does |
+## Proposed skills
+
+| Skill | Purpose |
 | --- | --- |
-| `luxonis-guide` | Points you to the right skill for your situation. |
-| `luxonis-device-setup` | Brings a Luxonis OAK camera to a verified, working state. |
-| `luxonis-project-interview` | Interviews you and writes a buildable project brief. |
-| `luxonis-build-poc` | Builds a thin runnable proof of concept from a brief. |
-| `luxonis-troubleshoot` | Diagnoses broken, slow, or confusing OAK apps and device setups. |
+| `luxonis-build` | Plan, build, inspect, and iterate on an OAK proof of concept. |
+| `luxonis-device-setup` | Verify one OAK device and its development path. |
+| `luxonis-inspect-pipeline` | Capture and interpret bounded live pipeline evidence. |
+| `luxonis-troubleshoot` | Diagnose the first reproducible failing OAK layer. |
+| `luxonis-convert-model` | Convert and validate an approved model for a named RVC target. |
+| `luxonis-integrate-model` | Integrate a validated Zoo model or NN Archive into an OAK app. |
 
-### How they fit together
+The skills may be invoked directly or selected by a compatible agent from an ordinary OAK build
+request. Customers should not need to learn or manually execute a fixed sequence.
 
-Most work runs along one path, with troubleshooting available at any point:
+## What this draft is testing
 
-1. **Get the camera working** → `luxonis-device-setup`
-2. **Turn your idea into a brief** → `luxonis-project-interview`
-3. **Build the demo** → `luxonis-build-poc`
+- A single lightweight build orchestrator with progressive disclosure instead of many required
+  user-facing steps.
+- Human review of a diagrammed plan before a new or materially redesigned POC is implemented.
+- MCP-backed current context rather than duplicating fast-changing Luxonis documentation.
+- Direct pipeline and final-output evidence instead of treating a running process as success.
+- Narrow specialist skills that remain useful independently and can be agent-invoked when needed.
 
-Steps 1 and 2 are order-flexible — you can shape the idea before the hardware arrives. If
-something breaks along the way, reach for `luxonis-troubleshoot`. Not sure where to start?
-Run `luxonis-guide`.
-
-## Install
-
-### Claude Code
-
-```text
-/plugin marketplace add luxonis/skills
-/plugin install luxonis@luxonis
-/reload-plugins
-```
-
-### Cursor
-
-Install from the Cursor Marketplace, or add it manually via
-**Settings → Rules → Add Rule → Remote Rule (Github)** with:
-
-```text
-luxonis/skills
-```
-
-### `npx skills`
-
-```bash
-npx skills@latest add luxonis/skills
-```
-
-## Using the skills
-
-All skills are **manual-only** — you invoke them explicitly, they never trigger on their
-own. Invoke by name:
-
-```text
-/luxonis-guide
-/luxonis-device-setup
-/luxonis-project-interview
-/luxonis-build-poc
-/luxonis-troubleshoot
-```
-
-Claude Code plugin installs may namespace skills by plugin name:
-
-```text
-/luxonis:luxonis-device-setup
-```
-
-## Shared context
-
-Skills that need example code or reference material keep it under a single shared folder so
-clones don't get scattered across your machine:
-
-```text
-~/.luxonis/agent-context/
-```
-
-If a skill populated it earlier, later runs reuse it.
-
-## Support
-
-For hardware faults (orange LED, boot failure, suspected calibration) or issues the skills
-can't resolve locally, contact [support@luxonis.com](mailto:support@luxonis.com) or see the
-[Luxonis documentation](https://docs.luxonis.com).
+See [the architecture](docs/architecture.md) and [the short RFC](docs/v2-lightweight-rfc.md).
+The deterministic checks are scaffolding for iteration, not evidence that the approach works with
+customers or real devices.
 
 ## License
 

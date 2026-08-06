@@ -1,0 +1,13 @@
+interface:
+  display_name: "Luxonis Troubleshoot"
+  short_description: "Diagnose an OAK failure from direct evidence"
+  default_prompt: "Use $luxonis-troubleshoot to diagnose and fix this OAK application failure."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "luxonis"
+      description: "Current Luxonis documentation and examples"
+      transport: "streamable_http"
+      url: "https://luxonis-mcp.luxonis.workers.dev/mcp"
+policy:
+  allow_implicit_invocation: true

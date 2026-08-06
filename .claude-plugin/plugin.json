@@ -1,8 +1,8 @@
 {
   "name": "luxonis",
-  "displayName": "Luxonis Skills",
-  "version": "1.0.0",
-  "description": "Skills for Luxonis OAK cameras, DepthAI, device setup, troubleshooting, and OAK app proofs of concept.",
+  "displayName": "Luxonis Skills V2 Lightweight (Draft)",
+  "version": "2.0.0-alpha.1",
+  "description": "Experimental, unvalidated skills for planning, building, inspecting, and verifying use-case-specific OAK proofs of concept.",
   "author": {
     "name": "Luxonis",
     "email": "support@luxonis.com",
@@ -19,12 +19,9 @@
     "rvc4",
     "camera",
     "computer-vision",
-    "poe",
-    "usb"
+    "proof-of-concept"
   ],
   "skills": [
-    "./skills/getting-started",
-    "./skills/building",
-    "./skills/support"
+    "./skills"
   ]
 }

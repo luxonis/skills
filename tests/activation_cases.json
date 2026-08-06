@@ -1,0 +1,72 @@
+[
+  {
+    "id": "new_barcode_poc",
+    "prompt": "Build me an app on my OAK 4 that reads barcodes on boxes moving down our line and publishes each new code once.",
+    "expected": "luxonis-build"
+  },
+  {
+    "id": "material_depth_redesign",
+    "prompt": "Our DepthAI app estimates box size from RGB only. Redesign it to use stereo depth and keep 20 FPS.",
+    "expected": "luxonis-build"
+  },
+  {
+    "id": "connect_oak",
+    "prompt": "My OAK-D is plugged in. Help me verify the device and run a first DepthAI v3 camera baseline.",
+    "expected": "luxonis-device-setup"
+  },
+  {
+    "id": "inspect_outputs",
+    "prompt": "The OAK app is running. Inspect its depth and detections and tell me whether they align on real frames.",
+    "expected": "luxonis-inspect-pipeline"
+  },
+  {
+    "id": "broken_pipeline",
+    "prompt": "Diagnose why this OAK application now fails during pipeline startup after my last edit.",
+    "expected": "luxonis-troubleshoot"
+  },
+  {
+    "id": "convert_onnx",
+    "prompt": "Convert this approved ONNX classifier to an NN Archive for our RVC4 camera.",
+    "expected": "luxonis-convert-model"
+  },
+  {
+    "id": "integrate_archive",
+    "prompt": "Wire this validated NN Archive into the existing DepthAI v3 app and expose its parsed results.",
+    "expected": "luxonis-integrate-model"
+  },
+  {
+    "id": "narrow_overlay_edit",
+    "prompt": "In this existing OAK app, add confidence and track ID to the annotated frame. The perception pipeline stays unchanged.",
+    "expected": "luxonis-build"
+  },
+  {
+    "id": "generic_python",
+    "prompt": "Write a Python function that merges two dictionaries.",
+    "expected": null
+  },
+  {
+    "id": "camera_recommendation",
+    "prompt": "Which mirrorless camera should I buy for vacation photography?",
+    "expected": null
+  },
+  {
+    "id": "generic_opencv",
+    "prompt": "Use OpenCV to threshold a folder of PNG images.",
+    "expected": null
+  },
+  {
+    "id": "generic_mqtt",
+    "prompt": "Write an MQTT consumer that stores messages in PostgreSQL.",
+    "expected": null
+  },
+  {
+    "id": "generic_ros",
+    "prompt": "Create a ROS 2 navigation package for my mobile robot.",
+    "expected": null
+  },
+  {
+    "id": "generic_training",
+    "prompt": "Train a new object detector from my labeled dataset.",
+    "expected": null
+  }
+]
