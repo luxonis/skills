@@ -1,5 +1,5 @@
 {
-  "name": "luxonis",
+  "name": "luxonis-v2-draft",
   "version": "2.0.0-alpha.1",
   "description": "Experimental, unvalidated skills for planning, building, inspecting, and verifying use-case-specific OAK proofs of concept.",
   "author": {
@@ -21,7 +21,7 @@
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "Luxonis Skills V2 Lightweight (Draft)",
+    "displayName": "Luxonis Skills V2 Draft",
     "shortDescription": "Experimental OAK proof-of-concept builder.",
     "longDescription": "Use current Luxonis context and direct pipeline inspection to plan, build, troubleshoot, and verify a customer-specific OAK proof of concept.",
     "developerName": "Luxonis",

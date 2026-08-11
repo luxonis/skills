@@ -1,6 +1,6 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.json",
-  "name": "luxonis",
+  "name": "luxonis-v2-draft",
   "description": "Experimental V2 direction for building and directly verifying use-case-specific OAK proofs of concept.",
   "owner": {
     "name": "Luxonis",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "luxonis",
+      "name": "luxonis-v2-draft",
       "source": "./",
       "description": "Experimental, unvalidated V2 skills for use-case-specific OAK proofs of concept."
     }

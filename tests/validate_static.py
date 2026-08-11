@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic structure and no-device checks for V2 Lightweight."""
+"""Deterministic structure and no-device checks for the V2 draft."""
 
 from __future__ import annotations
 
@@ -173,7 +173,7 @@ def check_scripts(errors: list[str]) -> None:
         ROOT / "tests/fakes/bin/oakctl",
         ROOT / "tests/validate_static.py",
     ]
-    with tempfile.TemporaryDirectory(prefix="luxonis-v2-lightweight-pycache-") as cache:
+    with tempfile.TemporaryDirectory(prefix="luxonis-v2-draft-pycache-") as cache:
         env = os.environ.copy()
         env["PYTHONPYCACHEPREFIX"] = cache
         result = subprocess.run(
@@ -224,11 +224,11 @@ def main() -> int:
     check_manifests(errors)
     check_scripts(errors)
     if errors:
-        print("V2 Lightweight validation failed:")
+        print("V2 draft validation failed:")
         for error in errors:
             print(f"- {error}")
         return 1
-    print(f"V2 Lightweight validation passed: {len(skill_files)} skills plus no-device fixtures")
+    print(f"V2 draft validation passed: {len(skill_files)} skills plus no-device fixtures")
     return 0
 
 

@@ -1,4 +1,4 @@
-# V2 Lightweight direction
+# V2 draft direction
 
 ## Status
 
@@ -7,7 +7,7 @@ or representative device tasks and should not be treated as release-ready behavi
 
 ## Capability step
 
-V1 helps an engineer get an OAK connected and reach an example-level application. V2 Lightweight
+V1 helps an engineer get an OAK connected and reach an example-level application. V2
 aims to help that engineer produce a working proof of concept for their actual use case: reviewed
 architecture, customer-specific behavior, repeatable execution, observable output, and explicit
 limitations. The target is a credible demo, not production readiness or a claim that every

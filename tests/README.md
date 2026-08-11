@@ -1,4 +1,4 @@
-# V2 Lightweight tests
+# V2 draft tests
 
 These tests exercise the contracts that make the plugin useful when a customer starts with a
 normal OAK request and does not study the skill list first.

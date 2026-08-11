@@ -1,4 +1,4 @@
-# Luxonis Agent Skills: V2 Lightweight Draft
+# Luxonis Agent Skills: V2 Draft
 
 > Experimental direction only. This branch has not been benchmarked with representative customer
 > workflows or validated for release. It is not ready for customer use or merge.
@@ -21,15 +21,32 @@ The MCP is bundled through the plugin configuration. Installing individual skill
 
 ## Install the full plugin
 
+These draft instructions are pinned to the `v2-draft` branch. Run each command separately and wait
+for it to finish before entering the next command.
+
 ### Claude Code: skills + MCP
 
-Run these commands inside Claude Code:
+First, add the draft marketplace. Enter only this command in Claude Code:
 
 ```text
-/plugin marketplace add luxonis/skills
-/plugin install luxonis@luxonis
+/plugin marketplace add luxonis/skills@v2-draft
+```
+
+After Claude confirms that the marketplace was added, install the plugin with a separate command:
+
+```text
+/plugin install luxonis-v2-draft@luxonis-v2-draft
+```
+
+After installation finishes, reload plugins with a third command:
+
+```text
 /reload-plugins
 ```
+
+If you use the **Add Marketplace** dialog instead of the slash command, enter only
+`luxonis/skills@v2-draft` in the marketplace source field. Do not paste the install or reload
+commands into that field.
 
 Claude Code may ask you to approve the `luxonis` MCP server the first time it loads. After
 approval, verify the connection from a terminal:
@@ -42,11 +59,16 @@ The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
 
-Add the Luxonis marketplace and install the plugin:
+First, add the draft marketplace from a terminal:
 
 ```bash
-codex plugin marketplace add luxonis/skills
-codex plugin add luxonis@luxonis
+codex plugin marketplace add luxonis/skills --ref v2-draft
+```
+
+After that command finishes, install the plugin separately:
+
+```bash
+codex plugin add luxonis-v2-draft@luxonis-v2-draft
 ```
 
 Then start a new Codex session so it loads the bundled skills and MCP tools:
@@ -100,7 +122,7 @@ Build an OAK application that scans barcodes on packages moving along a conveyor
 Claude Code plugin installs may namespace explicit skill commands:
 
 ```text
-/luxonis:luxonis-build
+/luxonis-v2-draft:luxonis-build
 ```
 
 Codex supports explicit skill selection with:
@@ -141,7 +163,7 @@ python3 tests/validate_static.py
 These checks do not replace representative agent benchmarks, customer testing, or real-device
 validation.
 
-See [the architecture](docs/architecture.md) and [the short RFC](docs/v2-lightweight-rfc.md).
+See [the architecture](docs/architecture.md) and [the short RFC](docs/v2-draft-rfc.md).
 
 ## Support
 

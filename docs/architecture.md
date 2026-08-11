@@ -1,4 +1,4 @@
-# V2 Lightweight architecture
+# V2 draft architecture
 
 ## Invocation
 
