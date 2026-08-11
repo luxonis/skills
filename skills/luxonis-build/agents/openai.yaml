@@ -8,6 +8,6 @@ dependencies:
       value: "luxonis"
       description: "Current Luxonis documentation, examples, and models"
       transport: "streamable_http"
-      url: "https://luxonis-mcp.luxonis.workers.dev/mcp"
+      url: "https://mcp.luxonis.com/mcp"
 policy:
   allow_implicit_invocation: true

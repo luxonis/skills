@@ -2,7 +2,7 @@
   "mcpServers": {
     "luxonis": {
       "type": "http",
-      "url": "https://luxonis-mcp.luxonis.workers.dev/mcp"
+      "url": "https://mcp.luxonis.com/mcp"
     }
   }
 }
