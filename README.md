@@ -59,6 +59,14 @@ The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
 
+Codex permits one configured ref for a Git marketplace source. If the V1 `luxonis` marketplace is
+already installed, remove that plugin and marketplace before adding the draft:
+
+```bash
+codex plugin remove luxonis@luxonis
+codex plugin marketplace remove luxonis
+```
+
 First, add the draft marketplace from a terminal:
 
 ```bash
@@ -77,8 +85,8 @@ Then start a new Codex session so it loads the bundled skills and MCP tools:
 codex
 ```
 
-You can also open `/plugins` inside Codex, select the `luxonis` marketplace, and install or
-enable the plugin there.
+You can also open `/plugins` inside Codex, select the `luxonis-v2-draft` marketplace, and install
+or enable the plugin there.
 
 ### Skills-only alternatives
 
