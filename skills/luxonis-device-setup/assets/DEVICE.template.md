@@ -1,15 +1,27 @@
-# OAK Device
+# OAK setup notes
 
-- Verified date:
-- Product name and RVC family:
-- Device ID/address/serial:
-- Connection and selected topology:
-- Factory or managed state:
-- Host OS, architecture, Python, and environment:
+Treat this file as a hint. Cabling, IPs, and which unit is on the desk can change. Trust live
+discovery.
+
+## Host
+
+- Date:
+- OS, architecture:
+- Python, environment:
 - DepthAI version:
 - oakctl version, when applicable:
-- POC plan/revision, when applicable:
-- Highest readiness layer:
-- Exact verification command:
-- Passing direct observation:
-- Known constraints and approvals still required:
+- Gotchas (udev, WSL, VPN, PoE power, ...):
+
+## How cameras show up here
+
+For each known unit or path, note what was true when last checked:
+
+- Product name and RVC family:
+- Connection (USB / PoE / standalone):
+- Factory or managed:
+- ID / address / serial last seen:
+- How this host talks to it (host-connected DepthAI / oakctl / OAK App):
+- Last command that streamed real data:
+- What that command proved:
+
+## Open setup issues

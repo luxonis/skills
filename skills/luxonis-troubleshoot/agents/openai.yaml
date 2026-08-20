@@ -1,6 +1,6 @@
 interface:
   display_name: "Luxonis Troubleshoot"
-  short_description: "Diagnose an OAK failure from direct evidence"
+  short_description: "Diagnose a broken existing OAK application"
   default_prompt: "Use $luxonis-troubleshoot to diagnose and fix this OAK application failure."
 dependencies:
   tools:

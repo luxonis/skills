@@ -1,0 +1,13 @@
+interface:
+  display_name: "Luxonis"
+  short_description: "Luxonis OAK / DepthAI help"
+  default_prompt: "Use $luxonis to help with this Luxonis OAK / DepthAI work."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "luxonis"
+      description: "Current Luxonis documentation, examples, and models"
+      transport: "streamable_http"
+      url: "https://mcp.luxonis.com/mcp"
+policy:
+  allow_implicit_invocation: true

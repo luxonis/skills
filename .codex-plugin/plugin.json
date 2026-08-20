@@ -1,7 +1,7 @@
 {
-  "name": "luxonis-v2-draft",
-  "version": "2.0.0-alpha.1",
-  "description": "Experimental, unvalidated skills for planning, building, inspecting, and verifying use-case-specific OAK proofs of concept.",
+  "name": "luxonis-companion",
+  "version": "0.1.0",
+  "description": "Experimental Luxonis OAK / DepthAI skills for questions, hardware setup, and application work.",
   "author": {
     "name": "Luxonis",
     "email": "support@luxonis.com",
@@ -15,15 +15,14 @@
     "oak",
     "depthai",
     "oak4",
-    "computer-vision",
-    "proof-of-concept"
+    "computer-vision"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
-    "displayName": "Luxonis Skills V2 Draft",
-    "shortDescription": "Experimental OAK proof-of-concept builder.",
-    "longDescription": "Use current Luxonis context and direct pipeline inspection to plan, build, troubleshoot, and verify a customer-specific OAK proof of concept.",
+    "displayName": "Luxonis Companion",
+    "shortDescription": "Experimental OAK / DepthAI entry skill and specialists.",
+    "longDescription": "Start from Luxonis questions, device choice, or hardware setup, then build or change an OAK application when that is the job. Specialists cover live inspect, troubleshooting, and custom models.",
     "developerName": "Luxonis",
     "category": "Developer Tools",
     "capabilities": [
@@ -33,9 +32,9 @@
     ],
     "websiteURL": "https://www.luxonis.com",
     "defaultPrompt": [
-      "Build an OAK proof of concept for my use case.",
-      "Inspect what my DepthAI pipeline produces.",
-      "Convert my model for this OAK device."
+      "Help with this Luxonis OAK / DepthAI work.",
+      "Get my OAK hardware working for development.",
+      "Inspect what my DepthAI pipeline produces."
     ]
   }
 }

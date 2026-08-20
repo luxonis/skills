@@ -1,16 +1,16 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.json",
-  "name": "luxonis-v2-draft",
-  "description": "Experimental V2 direction for building and directly verifying use-case-specific OAK proofs of concept.",
+  "name": "luxonis-companion",
+  "description": "Experimental Luxonis OAK / DepthAI skills for coding agents.",
   "owner": {
     "name": "Luxonis",
     "url": "https://www.luxonis.com"
   },
   "plugins": [
     {
-      "name": "luxonis-v2-draft",
+      "name": "luxonis-companion",
       "source": "./",
-      "description": "Experimental, unvalidated V2 skills for use-case-specific OAK proofs of concept."
+      "description": "Experimental skills for Luxonis questions, hardware setup, and OAK applications."
     }
   ]
 }

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Luxonis Model"
+  short_description: "Convert or integrate a custom OAK model"
+  default_prompt: "Use $luxonis-model to convert or integrate this custom model into my OAK application."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "luxonis"
+      description: "Current Luxonis conversion, model, and integration documentation"
+      transport: "streamable_http"
+      url: "https://mcp.luxonis.com/mcp"
+policy:
+  allow_implicit_invocation: true

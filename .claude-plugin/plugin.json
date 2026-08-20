@@ -1,8 +1,8 @@
 {
-  "name": "luxonis-v2-draft",
-  "displayName": "Luxonis Skills V2 Draft",
-  "version": "2.0.0-alpha.1",
-  "description": "Experimental, unvalidated skills for planning, building, inspecting, and verifying use-case-specific OAK proofs of concept.",
+  "name": "luxonis-companion",
+  "displayName": "Luxonis Companion",
+  "version": "0.1.0",
+  "description": "Experimental Luxonis OAK / DepthAI skills for questions, hardware setup, and application work.",
   "author": {
     "name": "Luxonis",
     "email": "support@luxonis.com",
@@ -18,8 +18,7 @@
     "rvc2",
     "rvc4",
     "camera",
-    "computer-vision",
-    "proof-of-concept"
+    "computer-vision"
   ],
   "skills": [
     "./skills"

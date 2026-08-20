@@ -1,7 +1,7 @@
 interface:
   display_name: "Luxonis Device Setup"
-  short_description: "Verify an OAK device and development path"
-  default_prompt: "Use $luxonis-device-setup to connect and verify my OAK for development."
+  short_description: "Get OAK hardware working for development"
+  default_prompt: "Use $luxonis-device-setup to get my OAK hardware working for development."
 dependencies:
   tools:
     - type: "mcp"

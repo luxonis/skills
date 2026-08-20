@@ -1,41 +1,82 @@
-# Luxonis Agent Skills: V2 Draft
+# Luxonis Agent Skills
 
-> Experimental direction only. This branch has not been benchmarked with representative customer
-> workflows or validated for release. It is not ready for customer use or merge.
+> Experimental direction. This `companion` branch has not been benchmarked with representative
+> customer workflows or validated for release. It is not ready for customer use or merge.
 
-This draft explores the next step for Luxonis agent support: moving from example-level OAK
-onboarding to a working, use-case-specific proof of concept that an engineer can evaluate and
-extend.
+Luxonis agent skills for customers using coding agents (Claude Code, Codex, Cursor, Grok) with
+OAK cameras and DepthAI.
 
-## What the plugin includes
+**`luxonis`** is the entry skill. It checks that MCP is available, then does what you asked:
+questions, choosing a camera, getting hardware working, or building and changing an app. An
+application in the folder is not required. A new chat in the same folder continues from
+whatever notes and code already exist; it does not restart an interview.
 
-A full plugin installation includes:
+## Advertise this command
 
-- Six OAK and DepthAI skills for planning, building, setup, inspection, troubleshooting, and model
-  workflows.
-- The Luxonis MCP server at [https://mcp.luxonis.com/mcp](https://mcp.luxonis.com/mcp), which
-  supplies current documentation, examples, platform context, and model information.
+Invoke **`luxonis`** for Luxonis work. Compatible hosts may also auto-invoke it from an
+ordinary OAK request.
 
-The MCP is bundled through the plugin configuration. Installing individual skill folders with
-`npx skills`, a remote rule, or a manual copy does **not** install the MCP server.
+```text
+Which OAK should I use for outdoor license-plate reads?
+```
+
+```text
+Build an OAK application that scans barcodes on packages moving along a conveyor.
+```
+
+Claude Code plugin installs may namespace explicit skill commands:
+
+```text
+/luxonis-companion:luxonis
+```
+
+Codex supports explicit skill selection with:
+
+```text
+$luxonis
+```
+
+Specialist skills exist and may auto-fire when that is the job. There is no fixed interview /
+plan / approval sequence.
+
+| Skill | Job |
+| --- | --- |
+| `luxonis` | **Primary.** MCP, then questions, device choice, or driving app work. Owns `PROJECT_BRIEF.md` when the job is a product. |
+| `luxonis-device-setup` | Get hardware working for later development. Writes setup notes to `DEVICE.md`. |
+| `luxonis-inspect` | What a running pipeline is actually producing (`oakctl inspect`). |
+| `luxonis-troubleshoot` | An existing app is failing or wrong. |
+| `luxonis-model` | Custom (not already Zoo-ready) model → archive → wired in. |
+
+## What survives a new chat
+
+- **`DEVICE.md`** — setup notes for later sessions: host, how cameras show up here, last
+  commands that worked. May list several units. Treat as a hint; cabling and IPs change.
+- **`PROJECT_BRIEF.md`** — living use case when you are building or changing an app. Not an
+  architecture plan. Not required for questions or setup.
+- **The code** — when there is an application.
 
 ## Install the full plugin
 
-These draft instructions are pinned to the `v2-draft` branch. Run each command separately and wait
-for it to finish before entering the next command.
+These draft instructions are pinned to the `companion` branch. Run each command separately and
+wait for it to finish before entering the next command.
+
+A full plugin installation includes the five skills and the Luxonis MCP server at
+[https://mcp.luxonis.com/mcp](https://mcp.luxonis.com/mcp). The MCP is bundled through the plugin
+configuration. Installing individual skill folders with `npx skills`, a remote rule, or a manual
+copy does **not** install the MCP server.
 
 ### Claude Code: skills + MCP
 
-First, add the draft marketplace. Enter only this command in Claude Code:
+First, add the companion marketplace. Enter only this command in Claude Code:
 
 ```text
-/plugin marketplace add luxonis/skills@v2-draft
+/plugin marketplace add luxonis/skills@companion
 ```
 
 After Claude confirms that the marketplace was added, install the plugin with a separate command:
 
 ```text
-/plugin install luxonis-v2-draft@luxonis-v2-draft
+/plugin install luxonis-companion@luxonis-companion
 ```
 
 After installation finishes, reload plugins with a third command:
@@ -45,7 +86,7 @@ After installation finishes, reload plugins with a third command:
 ```
 
 If you use the **Add Marketplace** dialog instead of the slash command, enter only
-`luxonis/skills@v2-draft` in the marketplace source field. Do not paste the install or reload
+`luxonis/skills@companion` in the marketplace source field. Do not paste the install or reload
 commands into that field.
 
 Claude Code may ask you to approve the `luxonis` MCP server the first time it loads. After
@@ -59,24 +100,27 @@ The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
 
-Codex permits one configured ref for a Git marketplace source. If the V1 `luxonis` marketplace is
-already installed, remove that plugin and marketplace before adding the draft:
+Codex permits one configured ref for a Git marketplace source. If the V1 `luxonis` marketplace
+or the `luxonis-v2-draft` marketplace is already installed, remove that plugin and marketplace
+before adding this branch:
 
 ```bash
 codex plugin remove luxonis@luxonis
 codex plugin marketplace remove luxonis
+codex plugin remove luxonis-v2-draft@luxonis-v2-draft
+codex plugin marketplace remove luxonis-v2-draft
 ```
 
-First, add the draft marketplace from a terminal:
+First, add the companion marketplace from a terminal:
 
 ```bash
-codex plugin marketplace add luxonis/skills --ref v2-draft
+codex plugin marketplace add luxonis/skills --ref companion
 ```
 
 After that command finishes, install the plugin separately:
 
 ```bash
-codex plugin add luxonis-v2-draft@luxonis-v2-draft
+codex plugin add luxonis-companion@luxonis-companion
 ```
 
 Then start a new Codex session so it loads the bundled skills and MCP tools:
@@ -85,8 +129,8 @@ Then start a new Codex session so it loads the bundled skills and MCP tools:
 codex
 ```
 
-You can also open `/plugins` inside Codex, select the `luxonis-v2-draft` marketplace, and install
-or enable the plugin there.
+You can also open `/plugins` inside Codex, select the `luxonis-companion` marketplace, and
+install or enable the plugin there.
 
 ### Skills-only alternatives
 
@@ -104,64 +148,22 @@ With `npx skills`:
 npx skills@latest add luxonis/skills
 ```
 
-Use the Claude Code or Codex plugin flow above when testing the complete V2 experience.
-
-## Proposed skills
-
-| Skill | Purpose |
-| --- | --- |
-| `luxonis-build` | Plan, build, inspect, and iterate on an OAK proof of concept. |
-| `luxonis-device-setup` | Verify one OAK device and its development path. |
-| `luxonis-inspect-pipeline` | Capture and interpret bounded live pipeline evidence. |
-| `luxonis-troubleshoot` | Diagnose the first reproducible failing OAK layer. |
-| `luxonis-convert-model` | Convert and validate an approved model for a named RVC target. |
-| `luxonis-integrate-model` | Integrate a validated Zoo model or NN Archive into an OAK app. |
-
-Compatible hosts may select these skills from an ordinary OAK request. Customers should not need
-to study the skill list or manually execute a fixed sequence. They can also invoke a skill
-explicitly when they want a narrow workflow.
-
-For example:
-
-```text
-Build an OAK application that scans barcodes on packages moving along a conveyor.
-```
-
-Claude Code plugin installs may namespace explicit skill commands:
-
-```text
-/luxonis-v2-draft:luxonis-build
-```
-
-Codex supports explicit skill selection with:
-
-```text
-$luxonis-build
-```
-
-## V2 workflow
-
-For a new or materially redesigned proof of concept, `luxonis-build` gathers only the missing
-material constraints, draws the proposed pipeline, and asks for human review before implementation.
-After approval, it builds a thin vertical slice and iterates from direct pipeline and final-output
-evidence.
-
-The specialist skills remain independently useful and may be selected by the agent for device
-readiness, pipeline inspection, troubleshooting, model conversion, or model integration.
+Use the Claude Code or Codex plugin flow above when testing the complete companion experience.
 
 ## Product boundary
 
-V2 owns an OAK/DepthAI proof-of-concept vertical slice, supported model conversion and integration,
-inspection, and observable application behavior. It does not autonomously train a model, construct
-a training dataset, invent proprietary SLAM, deliver a complete ROS system, or claim production
-readiness.
+The entry skill gets MCP working, then answers Luxonis questions or drives hardware setup and
+application work. Specialists cover live inspect, a broken existing app, and custom-model
+conversion. This plugin does not train a model, construct a training dataset, invent
+proprietary SLAM, deliver a complete ROS system, or claim production certification.
 
-The model and coding harness perform most of the engineering work. The MCP provides current
-Luxonis facts, while the skills add focused workflow, review, evidence, and scope controls.
+Current Luxonis facts come from MCP (`luxonis__code`). Skills add workflow around that:
+evidence before live claims, setup notes, a living brief when the job is a product, and
+specialist handoff by name.
 
-## Draft validation
+## Validation
 
-The repository contains deterministic checks for plugin structure, skill contracts, and local
+The repository contains deterministic checks for plugin structure, skill files, and local
 no-device fixtures:
 
 ```bash
@@ -171,7 +173,7 @@ python3 tests/validate_static.py
 These checks do not replace representative agent benchmarks, customer testing, or real-device
 validation.
 
-See [the architecture](docs/architecture.md) and [the short RFC](docs/v2-draft-rfc.md).
+See [the architecture](docs/architecture.md).
 
 ## Support
 

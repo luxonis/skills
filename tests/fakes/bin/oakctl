@@ -16,7 +16,7 @@ def value_after(args, flag, default=None):
 
 
 def log_call(args):
-    path = os.environ.get("LUXONIS_V2_FAKE_LOG")
+    path = os.environ.get("LUXONIS_FAKE_LOG")
     if path:
         with Path(path).open("a", encoding="utf-8") as handle:
             handle.write(json.dumps({"argv": args}) + "\n")

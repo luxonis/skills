@@ -1,6 +1,0 @@
-interface:
-  display_name: "Luxonis Inspect Pipeline"
-  short_description: "Inspect live DepthAI pipeline outputs"
-  default_prompt: "Use $luxonis-inspect-pipeline to inspect what this running OAK application produces."
-policy:
-  allow_implicit_invocation: true

@@ -1,4 +1,4 @@
-# V2 draft tests
+# Companion tests
 
 These tests exercise the contracts that make the plugin useful when a customer starts with a
 normal OAK request and does not study the skill list first.
@@ -11,7 +11,7 @@ python3 tests/validate_static.py
 
 The test layers are:
 
-1. Static structure and trigger quality.
+1. Static structure: five skills, plugin identity, referenced files, scripts.
 2. Script checks with local fakes and no hardware.
 3. Fresh-agent behavior cases from `prompts/`.
 4. A future read-only device smoke test when an existing inspectable app is available.
