@@ -1,7 +1,11 @@
-# PoC Plan: <short title>
+<!-- Write this file to docs/plans/YYYY-MM-DD-<slug>.md. Also update docs/plans/current.md to point here. Plans rot; follow current.md. -->
 
+# Plan: <short title>
+
+- Date: YYYY-MM-DD
 - Status: Draft / Ready to implement
-- Brief: `PROJECT_BRIEF.md`
+- Brief: `docs/brief.md`
+- This file: `docs/plans/YYYY-MM-DD-<slug>.md`
 
 ## First demo
 
@@ -38,7 +42,7 @@ What the user or downstream system sees (overlay layout, sample JSON, or termina
 
 ## Validation
 
-| Check | How (replay / output) | Passes when |
+| Check | How (replay / inspect / output) | Passes when |
 | --- | --- | --- |
 
 ## Assumptions

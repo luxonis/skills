@@ -6,10 +6,13 @@
 Luxonis agent skills for customers using coding agents (Claude Code, Codex, Cursor, Grok) with
 OAK cameras and DepthAI.
 
-**`luxonis`** is the entry skill. It checks that MCP is available, then does what you asked:
-questions, choosing a camera, getting hardware working, or handing application work to
-`luxonis-app`. An application in the folder is not required. A new chat in the same folder
-continues from whatever notes and code already exist; it does not restart an interview.
+**`luxonis`** is the entry skill. It checks that MCP is available, gates on workspace when
+`AGENTS.md` or oakctl is missing, then does what you asked: questions, choosing a camera, or
+handing a named job to a specialist. An application in the folder is not required. A new chat
+in the same folder continues from whatever notes and code already exist; it does not restart
+an interview.
+
+oakctl is the host toolchain (udev, inspect, host-run env injection, future host config).
 
 ## Advertise this command
 
@@ -37,36 +40,53 @@ $luxonis
 ```
 
 Specialist skills exist and may auto-fire when that is the job. There is no fixed interview
-sequence.
+sequence. Ceremony follows the request: a named capability (show depth, stream RGB) is a
+first-run, not a product brief.
 
 | Skill | Job |
 | --- | --- |
-| `luxonis` | **Primary.** MCP, then questions, device choice, or routing to a specialist. |
-| `luxonis-app` | Build or change an application: brief → plan → closed-loop implementation. Hands recording to `luxonis-record`. |
-| `luxonis-device-setup` | Get hardware working for later development. Writes setup notes to `DEVICE.md`. |
+| `luxonis` | **Primary.** MCP, workspace gate, then questions, device choice, or routing to a specialist. |
+| `luxonis-workspace` | Make this folder a Luxonis agent workspace: oakctl, AGENTS.md, project env, glossary. |
+| `luxonis-app` | Build or change an application. Capability first-run, or product `docs/brief.md` plus a dated plan. Hands recording to `luxonis-record`. |
+| `luxonis-device-setup` | Get hardware working for later development. Writes setup notes to `docs/device.md`. |
 | `luxonis-record` | Capture or replay a holistic recording of the real scene. |
-| `luxonis-inspect` | What a running pipeline is actually producing (`oakctl inspect`). |
+| `luxonis-inspect` | What a running pipeline is actually producing (`oakctl inspect`). Proof tool; not on the entry job list. |
 | `luxonis-troubleshoot` | An existing app is failing or wrong. |
 | `luxonis-model` | Custom (not already Zoo-ready) model → archive → wired in. |
 
 ## What survives a new chat
 
-- **`DEVICE.md`** — setup notes for later sessions: host, how cameras show up here, last
+Customer project files (the user's repo). This companion's `docs/architecture.md` is not that
+layout.
+
+Living (overwrite in place):
+
+- **`AGENTS.md`** — always-on invariants and pointers. `CLAUDE.md` includes `@AGENTS.md`.
+- **`docs/glossary.md`** — vocabulary for this project.
+- **`docs/brief.md`** — living business problem when you are building a product app. Not an
+  architecture plan. Not required for questions, setup, or a capability first-run.
+- **`docs/device.md`** — setup notes for later sessions: host, how cameras show up here, last
   commands that worked. May list several units. Treat as a hint; cabling and IPs change.
-- **`PROJECT_BRIEF.md`** — living business problem when you are building or changing an app.
-  Not an architecture plan. Not required for questions or setup.
-- **`POC_PLAN.md`** — implementation plan, pipeline diagram, UI/output mockup, recording, and
-  validation checks for app work.
-- **`recordings/`** — holistic source recordings from `luxonis-record`, so later sessions can
-  iterate without occupying the camera.
 - **The code** — when there is an application.
+
+Dated (plans rot):
+
+- **`docs/plans/YYYY-MM-DD-<slug>.md`** — implementation plan, pipeline diagram, UI/output
+  mockup, recording, and validation checks for product app work.
+- **`docs/plans/current.md`** — stub that points at the current plan file.
+
+Stay out of `docs/`: **`recordings/`** (holistic source recordings from `luxonis-record`) and
+**`evidence/`** (inspect/replay working files).
+
+If a folder still has root `PROJECT_BRIEF.md`, `POC_PLAN.md`, or `DEVICE.md`, skills read
+those and write the new paths.
 
 ## Install the full plugin
 
 These draft instructions are pinned to the `companion` branch. Run each command separately and
 wait for it to finish before entering the next command.
 
-A full plugin installation includes the seven skills and the Luxonis MCP server at
+A full plugin installation includes the eight skills and the Luxonis MCP server at
 [https://mcp.luxonis.com/mcp](https://mcp.luxonis.com/mcp). The MCP is bundled through the plugin
 configuration. Installing individual skill folders with `npx skills`, a remote rule, or a manual
 copy does **not** install the MCP server.
@@ -158,16 +178,17 @@ Use the Claude Code or Codex plugin flow above when testing the complete compani
 
 ## Product boundary
 
-The entry skill gets MCP working, then answers Luxonis questions or routes hardware setup and
-application work. `luxonis-app` owns product work: a user-provided brief, a plan, and
-closed-loop implementation. `luxonis-record` owns capturing and replaying a holistic
+The entry skill gets MCP working, then answers Luxonis questions or routes workspace, hardware
+setup, and application work. `luxonis-workspace` owns host toolchain and always-on agent files.
+`luxonis-app` owns application work: a capability first-run, or a product brief plus dated
+plan and closed-loop proof. `luxonis-record` owns capturing and replaying a holistic
 recording. Other specialists cover live inspect, a broken existing app, and custom-model
 conversion. This plugin does not train a model, construct a training dataset, invent
 proprietary SLAM, deliver a complete ROS system, or claim production certification.
 
 Current Luxonis facts come from MCP (`luxonis__code`). Skills add workflow around that:
-evidence before live claims, setup notes, a living brief and plan when the job is a product,
-and specialist handoff by name.
+evidence before live claims, setup notes, a living brief and dated plan when the job is a
+product, and specialist handoff by name.
 
 ## Validation
 

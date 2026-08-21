@@ -10,7 +10,7 @@
     {
       "name": "luxonis-companion",
       "source": "./",
-      "description": "Experimental skills for Luxonis questions, hardware setup, and OAK applications."
+      "description": "Experimental skills for Luxonis questions, workspace and hardware setup, and OAK applications."
     }
   ]
 }

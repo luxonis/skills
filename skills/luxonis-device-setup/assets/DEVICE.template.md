@@ -1,3 +1,5 @@
+<!-- Write this file to docs/device.md. Living notes; overwrite in place. Read a legacy root DEVICE.md if present. Trust live state. -->
+
 # OAK setup notes
 
 Treat this file as a hint. Cabling, IPs, and which unit is on the desk can change. Trust live
@@ -9,7 +11,7 @@ discovery.
 - OS, architecture:
 - Python, environment:
 - DepthAI version:
-- oakctl version, when applicable:
+- oakctl version:
 - Gotchas (udev, WSL, VPN, PoE power, ...):
 
 ## How cameras show up here

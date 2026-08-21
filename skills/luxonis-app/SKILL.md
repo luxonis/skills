@@ -1,49 +1,93 @@
 ---
 name: luxonis-app
-description: Build or change a Luxonis OAK / DepthAI application. Use when creating, prototyping, developing, implementing, extending, or iterating on an OAK app, including PROJECT_BRIEF, POC_PLAN, and closed-loop validation. Do not use for questions-only, device-only setup, capturing a holistic recording, live inspect of an already-running pipeline, diagnosing a broken existing app, or converting a custom model.
+description: Build or change a Luxonis OAK / DepthAI application. Use when creating, prototyping, developing, implementing, extending, or iterating on an OAK app — a first-run capability (show depth, stream RGB, run a Zoo model) or a product with docs/brief.md and a dated plan. Do not use for questions-only, workspace bootstrap, device-only setup, capturing a holistic recording, live inspect of an already-running pipeline, diagnosing a broken existing app, or converting a custom model.
 ---
 
 # Luxonis App
 
-Turn a business problem into a working DepthAI application and prove it.
+Turn the request into a working DepthAI application and prove it. Ceremony follows the
+**request**, not the person.
 
 ## Done when
 
-Replay of a holistic recording shows the brief's success checks on one path
-(capture → perception → customer logic → requested output), or **blocked** with one named
-next action. Process liveness is not proof. Hardware fault (orange LED, boot failure,
-suspected calibration) goes to `support@luxonis.com`.
+**Capability / first-run:** one real frame or structured message proves the named
+capability (live, or replay if a matching recording already exists).
+
+**Product, host-connected path that can holistic-record/replay:** replay of a matching
+recording shows the brief's success checks on one path (capture → perception → customer
+logic → requested output).
+
+**Product, standalone OAK App or topology that cannot holistic-record:** `luxonis-inspect`
+or the installed oakctl run path proves a named claim. State that replay is pending. Do
+not hard-stop this skill.
+
+Process liveness is not proof. **Blocked** means one named next action. Hardware fault
+(orange LED, boot failure, suspected calibration) goes to `support@luxonis.com`.
 
 ## 1. Current facts
 
-- Use MCP `luxonis__code` for current APIs, examples, models. Never invent DepthAI APIs from memory. 
-- Ensure [oakctl](https://docs.luxonis.com/software-v3/oak-apps/oakctl.md) is installed.
-- DepthAI v3 only; do not mix v2 APIs. 
+- Use MCP `luxonis__code` for current APIs, examples, models. Never invent DepthAI APIs from memory.
+- oakctl is required. Prefer `oakctl run-script` when installed `--help` lists it as a local DepthAI environment runner (`oakctl run-script <command>...`). Confirm on this host; do not invent names. If no host runner exists, run via the project env and still require oakctl for inspect/udev.
+- DepthAI v3 only; do not mix v2 APIs.
 - If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, `oakctl` CLI `--help`.
 - Confirm node names from MCP or a current example.
 
-Read the request, the repo, `PROJECT_BRIEF.md`, `POC_PLAN.md`, and `DEVICE.md` when they
-exist. Treat `DEVICE.md` as setup notes; trust live state.
+If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
+continue. Do not copy its procedure.
 
-## 2. Brief — the business problem
+Read the request, the repo, `docs/brief.md`, `docs/plans/current.md`, and `docs/device.md`
+when they exist. Also read legacy root `PROJECT_BRIEF.md`, `POC_PLAN.md`, and `DEVICE.md` if
+present; write new work to the `docs/` paths. Treat `docs/device.md` as setup notes; trust
+live state.
 
-`PROJECT_BRIEF.md` is the customer's problem, not an architecture plan. Use
+Stay out of `docs/` for `recordings/`, `evidence/`, application code, `AGENTS.md`, and
+`CLAUDE.md`.
+
+## 2. Which path
+
+**Capability / first-run** when the request names a capability without a business
+integration or success bar (show depth, stream RGB, run person detection).
+
+**Product** when they named a business outcome, integration (MQTT, unique-once, counting),
+accuracy bar, or a matching `docs/brief.md` already exists.
+
+If capability work then becomes a product, write `docs/brief.md` and continue on the product
+path.
+
+Prefer a Zoo model or a deterministic method. Custom (not Zoo-ready) model →
+`luxonis-model`. Training, dataset collection, proprietary SLAM, or a complete ROS system:
+say so and stop. Do not call the OAK use case impossible.
+
+## 3. Capability / first-run
+
+Not gated on a brief or a recording. Implement as below. Prove one real frame or structured
+message. If a matching recording already exists, replay it instead of occupying the camera.
+Live visual claims (frames, detections, depth, crops, tracks) → `luxonis-inspect`.
+
+## 4. Product — brief
+
+Skip on a capability / first-run request.
+
+`docs/brief.md` is the customer's problem, not an architecture plan. Use
 `assets/PROJECT_BRIEF.template.md`. No pipeline graph, node names, or example names unless
 the customer wants those written down.
 
-- **Blank slate:** the user provides the brief. If they already stated the problem, draft
-  the file from those facts and ask them to confirm or complete it. If Goal, Scene, Outputs,
-  or Success are still missing, give them the template and wait. Do not run a product
-  interview to invent the use case.
-- **Existing matching brief:** reuse it. Do not restart.
+- **Blank slate:** draft `docs/brief.md` from stated facts. Ask at most the load-bearing
+  missing facts (where output goes; what success looks like). Defaults are allowed
+  (host-connected, overlay or file). Never give them the template and wait. Never invent a
+  warehouse/management system.
+- **Existing matching brief:** reuse it (including a legacy `PROJECT_BRIEF.md` you just
+  read). Do not restart.
 - Patch only when goal, scene, outputs, constraints, or now/later change.
 
-Get a yes on the **use case** before planning a *new* app.
+Confirm the use case before planning a *new* product app.
 
-## 3. Plan — how we will build it
+## 5. Product — plan
 
-For a new app or a change to method, topology, or success checks, write `POC_PLAN.md` from
-`assets/POC_PLAN.template.md`. It must include:
+Skip on a capability / first-run request.
+
+For a new app or a change to method, topology, or success checks, write a **dated** plan from
+`assets/POC_PLAN.template.md` at `docs/plans/YYYY-MM-DD-<slug>.md`. It must include:
 
 - The first-demo boundary and what is deferred
 - Starting example, method (deterministic / Zoo / customer model), and topology
@@ -52,46 +96,48 @@ For a new app or a change to method, topology, or success checks, write `POC_PLA
 - What the recording must contain
 - Observable validation checks
 
-Show the plan. Get a yes before implementing a *new* app. Natural approval is enough.
+Update `docs/plans/current.md` to a one-line stub pointing at that file. A timestamp without
+this pointer is how agents follow a dead plan.
+
+Show the plan. Get a yes before implementing a *new* product app. Natural approval is enough.
 
 A narrow existing-app edit that does not change method, topology, or success checks does not
-need a new plan. Change this repo; do not scaffold a second app.
+need a new plan. Change this repo; do not scaffold a second app. Do not claim success until
+proof.
 
-Prefer a Zoo model or a deterministic method. Custom (not Zoo-ready) model →
-`luxonis-model`. Training, dataset collection, proprietary SLAM, or a complete ROS system:
-say so and stop. Do not call the OAK use case impossible.
+## 6. Recording and proof
 
-## 4. Recording — close the loop
+`luxonis-record` owns capture/replay. Do not copy that procedure.
 
-Iterate against a **holistic recording**, not a live camera session.
+**Host-connected path that can holistic-record/replay:** iterate against a recording.
 
-If a recording that matches the brief's scene already exists, use it. If it does not, use
-`luxonis-record`. Do not copy that procedure here.
+- **New product app or material redesign:** get the recording before implementing.
+- **Narrow existing-app edit:** you may code first; success still needs proof.
+- If a matching recording already exists, use it. Do not occupy the camera.
 
-- **New app or material redesign:** get the recording before implementing, so you can
-  iterate alone.
-- **Narrow existing-app edit:** you may apply the requested code change, but do not claim
-  success until replay passes.
+**Standalone OAK App, or topology that cannot holistic-record:** do not hard-stop. Prove with
+`luxonis-inspect` (or the installed oakctl run path from `--help`) on a named claim. State
+that replay is pending. `luxonis-record` still stops if the topology cannot record — that is
+record's job, not a blocker for app "done" here.
 
-## 5. Implement and prove on replay
+## 7. Implement
 
 **New app.** Copy the closest current DepthAI v3 example into this project; leave the
-reference checkout unchanged. Isolated host environment. Run the example against the
-recording when replay supports it. Then make the smallest change that tests the assumption
-most likely to kill the approach. Implement one path.
+reference checkout unchanged. Isolated host environment. Prefer oakctl for host runs. Then
+make the smallest change that tests the assumption most likely to kill the approach.
+Implement one path.
 
 **Existing app.** Change this repo.
 
-Replay via `luxonis-record`. Observe application outputs here: open every image and parse
-every structured output used for a claim. When the result leaves the pipeline (MQTT, file,
-API, UI), observe that consumer separately. Keep artifacts used for a claim under
-`evidence/`.
+Observe application outputs: open every image and parse every structured output used for a
+claim. When the result leaves the pipeline (MQTT, file, API, UI), observe that consumer
+separately. Keep artifacts used for a claim under `evidence/`.
 
 A live-hardware demo claim still needs the device. For live frames, detections, depth,
 crops, or tracks, use `luxonis-inspect`. If the existing app is failing, use
 `luxonis-troubleshoot`.
 
-Return to the plan when replay evidence disproves the approach.
+Return to the plan when evidence disproves the approach.
 
 ## Guardrails
 

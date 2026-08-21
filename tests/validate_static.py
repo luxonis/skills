@@ -17,6 +17,7 @@ SKILLS = ROOT / "skills"
 EXPECTED = {
     "luxonis",
     "luxonis-app",
+    "luxonis-workspace",
     "luxonis-device-setup",
     "luxonis-record",
     "luxonis-inspect",

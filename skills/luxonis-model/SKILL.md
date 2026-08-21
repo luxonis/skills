@@ -15,10 +15,18 @@ requested. Live model behavior is proven when a device or replay (`luxonis-recor
 available; otherwise name the pending runtime check. **Blocked** means one named next
 action.
 
-Read `PROJECT_BRIEF.md`, `DEVICE.md`, source, and any existing archive or conversion note when
-present. None is required. Treat `DEVICE.md` as setup notes; trust live state. Do not start a
-greenfield interview. If the product is wrong, or the job is picking a Zoo model for a new
-app, mention `luxonis-app`.
+Use MCP `luxonis__code` for current conversion, archive, and integration APIs. Never invent
+DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. If MCP is unavailable:
+`https://docs.luxonis.com/llms.txt`, installed CLI `--help`.
+
+If `AGENTS.md` is missing, or oakctl is missing when this job needs the host toolchain, name
+`luxonis-workspace` and follow it, then continue. Do not copy its procedure.
+
+Read `docs/brief.md`, `docs/device.md`, source, and any existing archive or conversion note
+when present. Also read legacy root `PROJECT_BRIEF.md` and `DEVICE.md` if present. None is
+required. Treat `docs/device.md` as setup notes; trust live state. Do not start a greenfield
+interview. If the product is wrong, or the job is picking a Zoo model for a new app, mention
+`luxonis-app`.
 
 ## 1. Choose the branch
 
@@ -26,11 +34,6 @@ app, mention `luxonis-app`.
   (`references/convert.md`), then integrate if the app should use it.
 - Source is already a target-compatible NN Archive → integrate (`references/integrate.md`).
 - Training, dataset collection, or choosing a Zoo model for a new app → say so and stop.
-
-Use MCP `luxonis__code` for current conversion, archive, and integration APIs. Never invent
-DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. If MCP is unavailable:
-`https://docs.luxonis.com/llms.txt`, installed CLI `--help`, optional cache under
-`~/.luxonis/agent-context/`.
 
 ## 2. Keep the contract explicit
 

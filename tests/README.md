@@ -11,7 +11,7 @@ python3 tests/validate_static.py
 
 The test layers are:
 
-1. Static structure: seven skills, plugin identity, referenced files, scripts.
+1. Static structure: eight skills, plugin identity, referenced files, scripts.
 2. Script checks with local fakes and no hardware.
 3. Fresh-agent behavior cases from `prompts/`.
 4. A future read-only device smoke test when an existing inspectable app is available.

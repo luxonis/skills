@@ -10,6 +10,16 @@
     "expected": "luxonis"
   },
   {
+    "id": "workspace_setup",
+    "prompt": "This folder has no AGENTS.md and oakctl is not installed. Set up a Luxonis agent workspace here.",
+    "expected": "luxonis-workspace"
+  },
+  {
+    "id": "capability_first_run",
+    "prompt": "Show depth from my OAK camera.",
+    "expected": "luxonis-app"
+  },
+  {
     "id": "new_barcode_app",
     "prompt": "Build me an app on my OAK 4 that reads barcodes on boxes moving down our line and publishes each new code once.",
     "expected": "luxonis-app"

@@ -14,9 +14,17 @@ The original failed observation passes and the next dependent check still works,
 with a named next action. Hardware fault (orange LED, boot failure, suspected calibration)
 goes to `support@luxonis.com`.
 
-Read `PROJECT_BRIEF.md`, `DEVICE.md`, source, logs, and evidence when present. None is
-required. Treat `DEVICE.md` as setup notes; trust live state. Do not start a greenfield
-interview. If the product is wrong, mention `luxonis-app`.
+Use MCP `luxonis__code` for current APIs and examples. Never invent DepthAI APIs from memory.
+If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, installed CLI `--help`. DepthAI
+v3 only; do not mix v2 APIs.
+
+If `AGENTS.md` is missing, or oakctl is missing when this job needs the host toolchain, name
+`luxonis-workspace` and follow it, then continue. Do not copy its procedure.
+
+Read `docs/brief.md`, `docs/device.md`, source, logs, and evidence when present. Also read
+legacy root `PROJECT_BRIEF.md` and `DEVICE.md` if present. None is required. Treat
+`docs/device.md` as setup notes; trust live state. Do not start a greenfield interview. If
+the product is wrong, mention `luxonis-app`.
 
 ## 1. Freeze one failure
 
@@ -45,10 +53,6 @@ If the device path is unverified, use `luxonis-device-setup`. To capture or repl
 holistic recording, use `luxonis-record`. For claims about live frames, detections, depth,
 crops, tracks, or structured pipeline messages, use `luxonis-inspect`. Verify external
 output separately from pipeline evidence.
-
-Use MCP `luxonis__code` for current APIs and examples. Never invent DepthAI APIs from memory.
-If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, installed CLI `--help`, optional
-cache under `~/.luxonis/agent-context/`. DepthAI v3 only; do not mix v2 APIs.
 
 A cheap split: can a minimal known-good DepthAI snippet open the device and stream one frame?
 If that fails, the layer is device/connection. If it passes, bisect the app against the

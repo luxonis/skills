@@ -13,9 +13,16 @@ behavior. Process liveness is not proof.
 Opened image or parsed message evidence shows the claimed pipeline behavior, or **blocked**
 with the missing endpoint, topic, output, or decoder and one next action.
 
-Read `PROJECT_BRIEF.md`, `DEVICE.md`, and source when present. None is required. Treat
-`DEVICE.md` as setup notes; trust live state. Do not start a greenfield interview. If the
-product is wrong, mention `luxonis-app`.
+Use MCP `luxonis__code` for current inspect APIs. Never invent oakctl flags from memory.
+If MCP is unavailable: installed `oakctl inspect --help`.
+
+If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
+continue. Do not copy its procedure.
+
+Read `docs/brief.md`, `docs/device.md`, and source when present. Also read legacy root
+`PROJECT_BRIEF.md` and `DEVICE.md` if present. None is required. Treat `docs/device.md` as
+setup notes; trust live state. Do not start a greenfield interview. If the product is wrong,
+mention `luxonis-app`.
 
 ## 1. Name the claim
 
@@ -63,9 +70,9 @@ unbounded inspect process running.
 Topics may appear only after the first message. Produce representative input before diagnosing
 an absent topic.
 
-Create a unique run directory under `evidence/`, with a separate subdirectory per image topic
-so common frame filenames cannot overwrite each other. Next session does not depend on
-`evidence/`.
+Create a unique run directory under `evidence/` (not under `docs/`), with a separate
+subdirectory per image topic so common frame filenames cannot overwrite each other. Next
+session does not depend on `evidence/`.
 
 ## 5. Interpret evidence
 
