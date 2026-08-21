@@ -1,5 +1,7 @@
 # Project Brief: <short descriptive title>
 
+Business problem and success criteria. Not an implementation plan.
+
 ## Goal
 
 ## Device

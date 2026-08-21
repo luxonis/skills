@@ -5,23 +5,26 @@ Experimental. The customer-facing product story lives in the [README](../README.
 ## Invocation
 
 The host sees skill names and short job-shaped descriptions. It loads a `SKILL.md` after the
-user or model selects that skill. All five skills allow implicit invocation. Manual trigger of
-`luxonis` is the contract; auto-invoke is useful gravy.
+user or model selects that skill. All seven skills allow implicit invocation. Manual trigger
+of `luxonis` is the contract; auto-invoke is useful gravy.
 
 `luxonis` is the entry skill: confirm MCP, then do the asked job (questions, device choice,
-setup, or application work). An app in the folder is not required.
+setup, or hand off application work). An app in the folder is not required.
 
 ```mermaid
 flowchart TD
     U["Natural user request"] --> S{"Description match"}
     S --> L["luxonis"]
+    S --> A["luxonis-app"]
     S --> D["luxonis-device-setup"]
+    S --> R["luxonis-record"]
     S --> X["luxonis-inspect"]
     S --> T["luxonis-troubleshoot"]
     S --> M["luxonis-model"]
     L --> Q["questions / device choice"]
-    L --> A["build or change an app"]
+    L --> A
     L --> D
+    L --> R
     L --> X
     L --> T
     L --> M
@@ -35,11 +38,13 @@ into another skill.
 | Artifact | Role |
 | --- | --- |
 | `DEVICE.md` | Setup notes for later sessions. May list several units. Always a hint; trust live state. |
-| `PROJECT_BRIEF.md` | Living use case when the job is a product. Not required for questions or setup. |
+| `PROJECT_BRIEF.md` | Living business problem when the job is a product. Owned with `luxonis-app`. Not required for questions or setup. |
+| `POC_PLAN.md` | Implementation plan for app work: approach, pipeline diagram, UI/output mockup, recording, validation. |
 | The code | The implementation, when there is an application. |
+| `recordings/` | Holistic source recordings owned with `luxonis-record`. |
 
-`evidence/` may be a working directory for inspect. Next session does not depend on it. There is
-no `POC_PLAN.md`.
+`evidence/` may be a working directory for inspect and replay claims. Next session does not
+depend on it.
 
 ## Progressive disclosure
 

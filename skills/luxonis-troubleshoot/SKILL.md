@@ -16,7 +16,7 @@ goes to `support@luxonis.com`.
 
 Read `PROJECT_BRIEF.md`, `DEVICE.md`, source, logs, and evidence when present. None is
 required. Treat `DEVICE.md` as setup notes; trust live state. Do not start a greenfield
-interview. If the product is wrong, mention `luxonis`.
+interview. If the product is wrong, mention `luxonis-app`.
 
 ## 1. Freeze one failure
 
@@ -41,9 +41,10 @@ Check in order and stop at the first failure:
 7. Synchronization, crops, tracking, geometry, and application state.
 8. Requested file, MQTT, API, UI, terminal, or other final output.
 
-If the device path is unverified, use `luxonis-device-setup`. For claims about live frames,
-detections, depth, crops, tracks, or structured pipeline messages, use `luxonis-inspect`.
-Verify external output separately from pipeline evidence.
+If the device path is unverified, use `luxonis-device-setup`. To capture or replay a
+holistic recording, use `luxonis-record`. For claims about live frames, detections, depth,
+crops, tracks, or structured pipeline messages, use `luxonis-inspect`. Verify external
+output separately from pipeline evidence.
 
 Use MCP `luxonis__code` for current APIs and examples. Never invent DepthAI APIs from memory.
 If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, installed CLI `--help`, optional

@@ -22,7 +22,7 @@
   "interface": {
     "displayName": "Luxonis Companion",
     "shortDescription": "Experimental OAK / DepthAI entry skill and specialists.",
-    "longDescription": "Start from Luxonis questions, device choice, or hardware setup, then build or change an OAK application when that is the job. Specialists cover live inspect, troubleshooting, and custom models.",
+    "longDescription": "Start from Luxonis questions, device choice, or hardware setup, then build or change an OAK application with a brief, plan, and replay-validated closed loop. Specialists cover holistic record/replay, live inspect, troubleshooting, and custom models.",
     "developerName": "Luxonis",
     "category": "Developer Tools",
     "capabilities": [
@@ -34,6 +34,8 @@
     "defaultPrompt": [
       "Help with this Luxonis OAK / DepthAI work.",
       "Get my OAK hardware working for development.",
+      "Build or change this OAK application.",
+      "Record this OAK scene for later replay.",
       "Inspect what my DepthAI pipeline produces."
     ]
   }

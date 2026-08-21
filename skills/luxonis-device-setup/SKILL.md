@@ -1,13 +1,13 @@
 ---
 name: luxonis-device-setup
-description: Get Luxonis OAK hardware working for development and record the setup. Use for first setup, USB/PoE, oakctl or DepthAI discovery, or a camera that is not found.
+description: Get Luxonis OAK hardware working for development and write setup notes. Use for first setup, USB/PoE, oakctl or DepthAI discovery, or a camera that is not found.
 ---
 
 # Luxonis Device Setup
 
 Get OAK hardware working so later development can use it. This can happen before any app
-exists. Do not start a product interview; if they want advice, questions, or to build, mention
-`luxonis`.
+exists. Do not start a product interview. Questions or camera advice → `luxonis`. Build or
+change an app → `luxonis-app`.
 
 ## Done when
 

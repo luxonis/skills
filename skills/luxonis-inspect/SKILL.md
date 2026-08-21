@@ -15,7 +15,7 @@ with the missing endpoint, topic, output, or decoder and one next action.
 
 Read `PROJECT_BRIEF.md`, `DEVICE.md`, and source when present. None is required. Treat
 `DEVICE.md` as setup notes; trust live state. Do not start a greenfield interview. If the
-product is wrong, mention `luxonis`.
+product is wrong, mention `luxonis-app`.
 
 ## 1. Name the claim
 

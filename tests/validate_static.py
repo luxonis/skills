@@ -16,7 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ROOT / "skills"
 EXPECTED = {
     "luxonis",
+    "luxonis-app",
     "luxonis-device-setup",
+    "luxonis-record",
     "luxonis-inspect",
     "luxonis-troubleshoot",
     "luxonis-model",
@@ -132,6 +134,7 @@ def check_scripts(errors: list[str]) -> None:
     scripts = [
         SKILLS / "luxonis-device-setup/scripts/luxonis_doctor.py",
         SKILLS / "luxonis-model/scripts/validate_nn_archive.py",
+        SKILLS / "luxonis-record/scripts/holistic_record.py",
         ROOT / "tests/fakes/bin/oakctl",
         ROOT / "tests/validate_static.py",
     ]

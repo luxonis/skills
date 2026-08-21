@@ -7,9 +7,9 @@ Luxonis agent skills for customers using coding agents (Claude Code, Codex, Curs
 OAK cameras and DepthAI.
 
 **`luxonis`** is the entry skill. It checks that MCP is available, then does what you asked:
-questions, choosing a camera, getting hardware working, or building and changing an app. An
-application in the folder is not required. A new chat in the same folder continues from
-whatever notes and code already exist; it does not restart an interview.
+questions, choosing a camera, getting hardware working, or handing application work to
+`luxonis-app`. An application in the folder is not required. A new chat in the same folder
+continues from whatever notes and code already exist; it does not restart an interview.
 
 ## Advertise this command
 
@@ -36,13 +36,15 @@ Codex supports explicit skill selection with:
 $luxonis
 ```
 
-Specialist skills exist and may auto-fire when that is the job. There is no fixed interview /
-plan / approval sequence.
+Specialist skills exist and may auto-fire when that is the job. There is no fixed interview
+sequence.
 
 | Skill | Job |
 | --- | --- |
-| `luxonis` | **Primary.** MCP, then questions, device choice, or driving app work. Owns `PROJECT_BRIEF.md` when the job is a product. |
+| `luxonis` | **Primary.** MCP, then questions, device choice, or routing to a specialist. |
+| `luxonis-app` | Build or change an application: brief → plan → closed-loop implementation. Hands recording to `luxonis-record`. |
 | `luxonis-device-setup` | Get hardware working for later development. Writes setup notes to `DEVICE.md`. |
+| `luxonis-record` | Capture or replay a holistic recording of the real scene. |
 | `luxonis-inspect` | What a running pipeline is actually producing (`oakctl inspect`). |
 | `luxonis-troubleshoot` | An existing app is failing or wrong. |
 | `luxonis-model` | Custom (not already Zoo-ready) model → archive → wired in. |
@@ -51,8 +53,12 @@ plan / approval sequence.
 
 - **`DEVICE.md`** — setup notes for later sessions: host, how cameras show up here, last
   commands that worked. May list several units. Treat as a hint; cabling and IPs change.
-- **`PROJECT_BRIEF.md`** — living use case when you are building or changing an app. Not an
-  architecture plan. Not required for questions or setup.
+- **`PROJECT_BRIEF.md`** — living business problem when you are building or changing an app.
+  Not an architecture plan. Not required for questions or setup.
+- **`POC_PLAN.md`** — implementation plan, pipeline diagram, UI/output mockup, recording, and
+  validation checks for app work.
+- **`recordings/`** — holistic source recordings from `luxonis-record`, so later sessions can
+  iterate without occupying the camera.
 - **The code** — when there is an application.
 
 ## Install the full plugin
@@ -60,7 +66,7 @@ plan / approval sequence.
 These draft instructions are pinned to the `companion` branch. Run each command separately and
 wait for it to finish before entering the next command.
 
-A full plugin installation includes the five skills and the Luxonis MCP server at
+A full plugin installation includes the seven skills and the Luxonis MCP server at
 [https://mcp.luxonis.com/mcp](https://mcp.luxonis.com/mcp). The MCP is bundled through the plugin
 configuration. Installing individual skill folders with `npx skills`, a remote rule, or a manual
 copy does **not** install the MCP server.
@@ -152,14 +158,16 @@ Use the Claude Code or Codex plugin flow above when testing the complete compani
 
 ## Product boundary
 
-The entry skill gets MCP working, then answers Luxonis questions or drives hardware setup and
-application work. Specialists cover live inspect, a broken existing app, and custom-model
+The entry skill gets MCP working, then answers Luxonis questions or routes hardware setup and
+application work. `luxonis-app` owns product work: a user-provided brief, a plan, and
+closed-loop implementation. `luxonis-record` owns capturing and replaying a holistic
+recording. Other specialists cover live inspect, a broken existing app, and custom-model
 conversion. This plugin does not train a model, construct a training dataset, invent
 proprietary SLAM, deliver a complete ROS system, or claim production certification.
 
 Current Luxonis facts come from MCP (`luxonis__code`). Skills add workflow around that:
-evidence before live claims, setup notes, a living brief when the job is a product, and
-specialist handoff by name.
+evidence before live claims, setup notes, a living brief and plan when the job is a product,
+and specialist handoff by name.
 
 ## Validation
 

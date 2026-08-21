@@ -11,13 +11,14 @@ OAK app. One skill for convert and integrate.
 ## Done when
 
 The archive is on disk with a checked contract, and it is wired into the app when that was
-requested. Live model behavior is proven when a device or replay is available; otherwise name
-the pending runtime check. **Blocked** means one named next action.
+requested. Live model behavior is proven when a device or replay (`luxonis-record`) is
+available; otherwise name the pending runtime check. **Blocked** means one named next
+action.
 
 Read `PROJECT_BRIEF.md`, `DEVICE.md`, source, and any existing archive or conversion note when
 present. None is required. Treat `DEVICE.md` as setup notes; trust live state. Do not start a
 greenfield interview. If the product is wrong, or the job is picking a Zoo model for a new
-app, mention `luxonis`.
+app, mention `luxonis-app`.
 
 ## 1. Choose the branch
 

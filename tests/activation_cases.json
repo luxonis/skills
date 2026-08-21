@@ -12,22 +12,27 @@
   {
     "id": "new_barcode_app",
     "prompt": "Build me an app on my OAK 4 that reads barcodes on boxes moving down our line and publishes each new code once.",
-    "expected": "luxonis"
+    "expected": "luxonis-app"
   },
   {
     "id": "continue_existing_app",
     "prompt": "Keep going on this OAK app. Switch the output from a local overlay to MQTT using the brief already in this folder.",
-    "expected": "luxonis"
+    "expected": "luxonis-app"
   },
   {
     "id": "material_depth_change",
     "prompt": "Our DepthAI app estimates box size from RGB only. Change it to use stereo depth and keep 20 FPS.",
-    "expected": "luxonis"
+    "expected": "luxonis-app"
   },
   {
     "id": "connect_oak",
     "prompt": "My OAK-D is plugged in. Help me get it working for development and leave notes for the next session.",
     "expected": "luxonis-device-setup"
+  },
+  {
+    "id": "holistic_record",
+    "prompt": "Record a holistic DepthAI recording of my conveyor so I can replay it without the camera.",
+    "expected": "luxonis-record"
   },
   {
     "id": "inspect_outputs",
@@ -52,7 +57,7 @@
   {
     "id": "narrow_overlay_edit",
     "prompt": "In this existing OAK app, add confidence and track ID to the annotated frame. The perception pipeline stays unchanged.",
-    "expected": "luxonis"
+    "expected": "luxonis-app"
   },
   {
     "id": "generic_python",
