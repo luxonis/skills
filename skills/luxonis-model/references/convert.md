@@ -1,7 +1,7 @@
 # Convert a custom model
 
 Produce a target-platform NN Archive from an approved source. Retrieve the current
-ModelConverter / HubAI path from MCP `luxonis__code`; do not reuse remembered flags.
+ModelConverter / HubAI path from the Luxonis MCP `code` tool; do not reuse remembered flags.
 
 ## Path
 

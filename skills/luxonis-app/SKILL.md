@@ -26,11 +26,19 @@ Process liveness is not proof. **Blocked** means one named next action. Hardware
 
 ## 1. Current facts
 
-- Use MCP `luxonis__code` for current APIs, examples, models. Never invent DepthAI APIs from memory.
-- oakctl is required. Prefer `oakctl run-script` when installed `--help` lists it as a local DepthAI environment runner (`oakctl run-script <command>...`). Confirm on this host; do not invent names. If no host runner exists, run via the project env and still require oakctl for inspect/udev.
-- DepthAI v3 only; do not mix v2 APIs.
-- If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, `oakctl` CLI `--help`.
-- Confirm node names from MCP or a current example.
+Use the Luxonis MCP `code` tool for current APIs, examples, and models. Never invent
+DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm node names from MCP
+or a current example.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
+
+oakctl is required. Prefer `oakctl run-script` for host runs when installed `--help` lists
+it as a local DepthAI environment runner; do not invent subcommands. If no host runner
+exists, run via the project env and still use oakctl for inspect and udev.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.
@@ -56,7 +64,9 @@ path.
 
 Prefer a Zoo model or a deterministic method. Custom (not Zoo-ready) model →
 `luxonis-model`. Training, dataset collection, proprietary SLAM, or a complete ROS system:
-say so and stop. Do not call the OAK use case impossible.
+say so and stop. Do not call the OAK use case impossible. When stopping, state what the OAK
+side covers, what stays human-owned and the input/output contract between them, and one
+next step; record that boundary under Now / later in `docs/brief.md` when a brief exists.
 
 ## 3. Capability / first-run
 
@@ -99,7 +109,9 @@ For a new app or a change to method, topology, or success checks, write a **date
 Update `docs/plans/current.md` to a one-line stub pointing at that file. A timestamp without
 this pointer is how agents follow a dead plan.
 
-Show the plan. Get a yes before implementing a *new* product app. Natural approval is enough.
+Show the plan. Get a yes before implementing a *new* product app. Natural approval is
+enough. A later change to method, topology, or success checks voids that approval; show the
+updated plan again.
 
 A narrow existing-app edit that does not change method, topology, or success checks does not
 need a new plan. Change this repo; do not scaffold a second app. Do not claim success until

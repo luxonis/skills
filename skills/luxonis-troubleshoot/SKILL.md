@@ -14,9 +14,14 @@ The original failed observation passes and the next dependent check still works,
 with a named next action. Hardware fault (orange LED, boot failure, suspected calibration)
 goes to `support@luxonis.com`.
 
-Use MCP `luxonis__code` for current APIs and examples. Never invent DepthAI APIs from memory.
-If MCP is unavailable: `https://docs.luxonis.com/llms.txt`, installed CLI `--help`. DepthAI
-v3 only; do not mix v2 APIs.
+Use the Luxonis MCP `code` tool for current APIs and examples. Never invent DepthAI APIs
+from memory. DepthAI v3 only; do not mix v2 APIs.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
 
 If `AGENTS.md` is missing, or oakctl is missing when this job needs the host toolchain, name
 `luxonis-workspace` and follow it, then continue. Do not copy its procedure.
@@ -87,4 +92,4 @@ exact before/after commands, passing checks, and remaining unverified claims.
 - Do not pretend WSL has USB.
 - Never run competing processes against one device.
 - Training, proprietary SLAM, or a complete ROS system: say so and stop. Do not call the OAK
-  use case impossible.
+  use case impossible. State what stays human-owned and one next step.

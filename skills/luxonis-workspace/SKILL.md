@@ -20,9 +20,15 @@ discovery, not proving a stream, not building an app, not product questions.
 
 ## 1. Current facts
 
-Use MCP `luxonis__code` for current installer, udev, and CLI facts. Never invent oakctl
-subcommands. If MCP is unavailable: https://docs.luxonis.com/software-v3/oak-apps/oakctl.md,
-installed `--help`.
+Use the Luxonis MCP `code` tool for current installer, udev, and CLI facts. Never invent
+oakctl subcommands. The current oakctl page:
+https://docs.luxonis.com/software-v3/oak-apps/oakctl.md.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
 
 ## 2. Explore
 
@@ -57,10 +63,10 @@ Confirm with a v3 import in that env, not a guessed version string.
 Always-loaded invariants and pointers, not procedures. Seed from
 `assets/AGENTS.template.md`.
 
-Prefer `oakctl run-script` when installed `--help` lists it as a local DepthAI environment
-runner (`oakctl run-script <command>...`). Confirm on this host; do not invent names. If no
-host runner exists, run via the project env and still require oakctl for inspect and udev.
-`oakctl hub run-script` (if present) is Hub-token scripts, not a generic host runner.
+Prefer `oakctl run-script` for host runs when installed `--help` lists it as a local
+DepthAI environment runner; do not invent subcommands. If no host runner exists, run via
+the project env and still use oakctl for inspect and udev. `oakctl hub run-script` (if
+present) is Hub-token scripts, not a generic host runner.
 
 Do not overwrite a hand-written `AGENTS.md`. Add or update a clearly delimited Luxonis
 section.

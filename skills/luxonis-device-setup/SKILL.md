@@ -19,9 +19,14 @@ next action. Hardware fault (orange LED, boot failure, suspected calibration) go
 
 ## 1. Current facts
 
-Use MCP `luxonis__code` and installed CLI help before forming commands. Never invent DepthAI
-APIs from memory. DepthAI v3 only. If MCP is unavailable: `https://docs.luxonis.com/llms.txt`,
-installed `--help`.
+Use the Luxonis MCP `code` tool and installed CLI help before forming commands. Never
+invent DepthAI APIs from memory. DepthAI v3 only.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
 
 oakctl is required on this host (udev, inspect, future host config). If `AGENTS.md` is
 missing, or oakctl is missing, name `luxonis-workspace` and follow it, then continue hardware

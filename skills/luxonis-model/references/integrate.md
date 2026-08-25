@@ -1,7 +1,7 @@
 # Integrate an NN Archive
 
 Wire one target-compatible archive into the current application. Keep the change narrow.
-Verify exact APIs against a current example from MCP `luxonis__code`.
+Verify exact APIs against a current example from the Luxonis MCP `code` tool.
 
 ## Contract
 

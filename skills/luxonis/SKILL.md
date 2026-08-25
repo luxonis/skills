@@ -14,14 +14,28 @@ boot failure, suspected calibration) goes to `support@luxonis.com`.
 
 ## 1. Can we work?
 
-- If the MCP tool `luxonis__code` is missing, stop and install the MCP (`https://mcp.luxonis.com/mcp`) in your harness. Verify tool is present after installation or recommend user steps needed for tool to surface.
-- If the tool is already available, do not announce a health check.
-- Use `luxonis__code` (JavaScript sandbox over models, examples, and docs) for current Luxonis
-  facts. Never invent DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm
-  current node names from MCP or a current example.
-- If harness doesn't support MCP, skip MCP installation.
-- If tool didn't appear or if MCP is configured but a call fails, rely on `https://docs.luxonis.com/llms.txt` instead.
-- Whether using the MCP tool or the live documentation - this will be referred to as <LUXONIS_CONTEXT/> below.
+Current Luxonis facts come from the `code` tool on the Luxonis MCP server (`luxonis`,
+`https://mcp.luxonis.com/mcp`), a JavaScript sandbox over models, examples, and docs. The
+surfaced tool name varies by host. In order:
+
+1. If the tool is available, use it. Do not announce a health check.
+2. If it is missing and this host supports MCP, tell the user how to enable it here and stop
+   until it surfaces. The full plugin install bundles the server; otherwise add
+   `https://mcp.luxonis.com/mcp` in the host's MCP settings.
+3. If this host cannot use MCP, or configured calls fail, use
+   `https://docs.luxonis.com/llms.txt` and say facts come from the docs fallback.
+
+Never invent DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm current
+node names from MCP or a current example.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
+
+The source in use, MCP tool or live documentation, is referred to as <LUXONIS_CONTEXT/>
+below.
 
 ## 2. Workspace
 

@@ -13,8 +13,14 @@ behavior. Process liveness is not proof.
 Opened image or parsed message evidence shows the claimed pipeline behavior, or **blocked**
 with the missing endpoint, topic, output, or decoder and one next action.
 
-Use MCP `luxonis__code` for current inspect APIs. Never invent oakctl flags from memory.
-If MCP is unavailable: installed `oakctl inspect --help`.
+Use the Luxonis MCP `code` tool for current inspect APIs. Never invent oakctl flags from
+memory.
+
+Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
+returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
+observed behavior; memory is only for general reasoning. If observed host or device
+behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
+work from installed `--help` and local examples and name which facts are unverified.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.
