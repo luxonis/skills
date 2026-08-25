@@ -35,6 +35,29 @@ REMOVED = {
     "luxonis-inspect-pipeline",
 }
 
+# Canonical lines duplicated per skill (skills stay self-contained for per-skill installs).
+# Compared whitespace-normalized so wrapping may differ; wording may not.
+CANON_FACTS = (
+    "Best source first: the Luxonis MCP `code` tool, then the exact example or doc source "
+    "it returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, "
+    "then observed behavior; memory is only for general reasoning. If observed host or "
+    "device behavior contradicts docs or MCP, trust the observation and note the conflict. "
+    "If offline, work from installed `--help` and local examples and name which facts are "
+    "unverified."
+)
+CANON_RUNNER = (
+    "Prefer `oakctl run-script` for host runs when installed `--help` lists it as a local "
+    "DepthAI environment runner; do not invent subcommands. If no host runner exists, run "
+    "via the project env and still use oakctl for inspect and udev."
+)
+# The harness-prefixed MCP tool name differs per host (and per install mode); skills must
+# name the server's native `code` tool instead of hardcoding one host's form.
+BANNED_TOOL_NAME = "luxonis__code"
+
+
+def normalized(text: str) -> str:
+    return re.sub(r"\s+", " ", text)
+
 
 def fail(message: str, errors: list[str]) -> None:
     errors.append(message)
@@ -71,6 +94,12 @@ def check_skill(skill_file: Path, errors: list[str]) -> None:
         if not (skill_file.parent / resource).exists():
             fail(f"missing referenced resource {resource} from {skill_file}", errors)
 
+    flat = normalized(text)
+    if CANON_FACTS not in flat:
+        fail(f"canonical fact-source ladder missing or drifted in {skill_file}", errors)
+    if "run-script" in text and CANON_RUNNER not in flat:
+        fail(f"canonical host-runner line missing or drifted in {skill_file}", errors)
+
     agent_file = skill_file.parent / "agents/openai.yaml"
     if not agent_file.exists():
         fail(f"missing agents/openai.yaml for {name}", errors)
@@ -82,6 +111,18 @@ def check_skill(skill_file: Path, errors: list[str]) -> None:
         fail(f"default prompt does not reference ${name}", errors)
     if 'value: "luxonis"' not in agent or "https://mcp.luxonis.com/mcp" not in agent:
         fail(f"MCP dependency is missing for {name}", errors)
+
+
+def check_no_hardcoded_tool_name(errors: list[str]) -> None:
+    for path in sorted(ROOT.rglob("*.md")):
+        if ".git" in path.parts:
+            continue
+        if BANNED_TOOL_NAME in path.read_text(encoding="utf-8"):
+            fail(
+                f"hardcoded MCP tool name `{BANNED_TOOL_NAME}` in {path};"
+                " name the Luxonis MCP `code` tool instead",
+                errors,
+            )
 
 
 def check_layout(errors: list[str]) -> None:
@@ -97,11 +138,11 @@ def check_layout(errors: list[str]) -> None:
 
 def check_manifests(errors: list[str]) -> None:
     paths = (
+        ROOT / "plugin.json",
+        ROOT / "mcp.json",
         ROOT / ".mcp.json",
-        ROOT / ".codex-plugin/plugin.json",
         ROOT / ".claude-plugin/plugin.json",
         ROOT / ".claude-plugin/marketplace.json",
-        ROOT / ".cursor-plugin/plugin.json",
         ROOT / "tests/activation_cases.json",
     )
     parsed: dict[str, object] = {}
@@ -111,10 +152,9 @@ def check_manifests(errors: list[str]) -> None:
         except (OSError, json.JSONDecodeError) as error:
             fail(f"invalid JSON {path}: {error}", errors)
     for key in (
-        ".codex-plugin/plugin.json",
+        "plugin.json",
         ".claude-plugin/plugin.json",
         ".claude-plugin/marketplace.json",
-        ".cursor-plugin/plugin.json",
     ):
         data = parsed.get(key)
         if not isinstance(data, dict):
@@ -124,11 +164,34 @@ def check_manifests(errors: list[str]) -> None:
             fail(f"{key} plugin identity is {name!r}, expected luxonis-companion", errors)
         if "v2-draft" in json.dumps(data):
             fail(f"{key} still references v2-draft", errors)
-    codex = parsed.get(".codex-plugin/plugin.json")
-    if isinstance(codex, dict) and (
-        codex.get("skills") != "./skills/" or codex.get("mcpServers") != "./.mcp.json"
-    ):
-        fail("Codex manifest does not declare both skills and MCP", errors)
+
+    # Portable Agent Plugins manifests (https://agent-plugins.org) serve Codex, Cursor, and
+    # other standard hosts; .claude-plugin/ plus .mcp.json remain for Claude Code.
+    for legacy in (".codex-plugin", ".cursor-plugin"):
+        if (ROOT / legacy).exists():
+            fail(f"legacy host manifest {legacy}/ remains; the root plugin.json replaces it", errors)
+    portable = parsed.get("plugin.json")
+    if isinstance(portable, dict):
+        if portable.get("$schema") != "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json":
+            fail("plugin.json is missing the Agent Plugins 1.0.0 $schema", errors)
+        extensions = portable.get("extensions")
+        codex_interface = (
+            extensions.get("com.openai", {}).get("interface") if isinstance(extensions, dict) else None
+        )
+        if not isinstance(codex_interface, dict):
+            fail("plugin.json is missing the com.openai interface extension", errors)
+    portable_mcp = parsed.get("mcp.json")
+    if isinstance(portable_mcp, dict):
+        server = portable_mcp.get("mcpServers", {}).get("luxonis", {})
+        if portable_mcp.get("$schema") != "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json":
+            fail("mcp.json is missing the Agent Plugins 1.0.0 mcp $schema", errors)
+        if server.get("type") != "streamable-http" or server.get("url") != "https://mcp.luxonis.com/mcp":
+            fail("mcp.json does not declare the luxonis streamable-http server", errors)
+    claude_mcp = parsed.get(".mcp.json")
+    if isinstance(claude_mcp, dict):
+        claude_url = claude_mcp.get("mcpServers", {}).get("luxonis", {}).get("url")
+        if claude_url != "https://mcp.luxonis.com/mcp":
+            fail(".mcp.json does not declare the luxonis server for Claude Code", errors)
 
 
 def check_scripts(errors: list[str]) -> None:
@@ -193,6 +256,7 @@ def check_scripts(errors: list[str]) -> None:
 def main() -> int:
     errors: list[str] = []
     check_layout(errors)
+    check_no_hardcoded_tool_name(errors)
     for skill_file in sorted(SKILLS.glob("*/SKILL.md")):
         check_skill(skill_file, errors)
     check_manifests(errors)

@@ -1,6 +1,6 @@
 # Companion architecture
 
-Experimental. The customer-facing product story lives in the [README](../README.md).
+The customer-facing product story lives in the [README](../README.md).
 This file is companion architecture for this skills repo, not the customer project's `docs/`
 layout.
 
@@ -40,8 +40,8 @@ into another skill.
 `luxonis-workspace` is the prerequisite when `AGENTS.md` is missing, or oakctl is missing and
 the job needs the host toolchain. Then continue the original job.
 
-oakctl is the host toolchain. Prefer `oakctl run-script` when installed `--help` lists it as
-a local DepthAI environment runner. Confirm the subcommand on the host; do not invent names.
+oakctl is the host toolchain. Prefer `oakctl run-script` for host runs when installed
+`--help` lists it as a local DepthAI environment runner; do not invent subcommands.
 
 ## Customer project files
 
@@ -71,5 +71,10 @@ paths. Do not require the user to rename by hand.
 - `SKILL.md` is the always-needed procedure.
 - `references/` exist only for branches not used every run (inspect instrumentation, model
   convert vs integrate).
-- Version-sensitive facts come from MCP tool `luxonis__code` at `https://mcp.luxonis.com/mcp`.
-  Fallback: `https://docs.luxonis.com/llms.txt`, installed CLI `--help`.
+- Version-sensitive facts come from the `code` tool on the Luxonis MCP server (`luxonis`,
+  `https://mcp.luxonis.com/mcp`); the surfaced tool name varies by host, so never hardcode a
+  harness-prefixed form. Fallback: `https://docs.luxonis.com/llms.txt`, installed CLI
+  `--help`.
+- Canonical shared lines (the fact-source ladder, the host-runner rule) are duplicated per
+  skill so each skill folder stays self-contained for per-skill installs;
+  `tests/validate_static.py` enforces that they stay identical across skills.

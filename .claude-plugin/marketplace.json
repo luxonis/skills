@@ -1,7 +1,7 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.json",
   "name": "luxonis-companion",
-  "description": "Experimental Luxonis OAK / DepthAI skills for coding agents.",
+  "description": "Luxonis OAK / DepthAI skills for coding agents.",
   "owner": {
     "name": "Luxonis",
     "url": "https://www.luxonis.com"
@@ -10,7 +10,7 @@
     {
       "name": "luxonis-companion",
       "source": "./",
-      "description": "Experimental skills for Luxonis questions, workspace and hardware setup, and OAK applications."
+      "description": "Skills for Luxonis questions, workspace and hardware setup, and OAK applications."
     }
   ]
 }

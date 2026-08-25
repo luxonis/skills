@@ -1,7 +1,7 @@
 # Luxonis Agent Skills
 
-> Experimental direction. This `companion` branch has not been benchmarked with representative
-> customer workflows or validated for release. It is not ready for customer use or merge.
+> Beta. Skill behavior and project file layout may still change between releases. Feedback
+> and issues: [support@luxonis.com](mailto:support@luxonis.com).
 
 Luxonis agent skills for customers using coding agents (Claude Code, Codex, Cursor, Grok) with
 OAK cameras and DepthAI.
@@ -56,8 +56,8 @@ first-run, not a product brief.
 
 ## What survives a new chat
 
-Customer project files (the user's repo). This companion's `docs/architecture.md` is not that
-layout.
+Customer project files (the user's repo). This repository's `docs/architecture.md` is not
+that layout.
 
 Living (overwrite in place):
 
@@ -83,20 +83,25 @@ those and write the new paths.
 
 ## Install the full plugin
 
-These draft instructions are pinned to the `companion` branch. Run each command separately and
-wait for it to finish before entering the next command.
+Run each command separately and wait for it to finish before entering the next command.
 
 A full plugin installation includes the eight skills and the Luxonis MCP server at
 [https://mcp.luxonis.com/mcp](https://mcp.luxonis.com/mcp). The MCP is bundled through the plugin
 configuration. Installing individual skill folders with `npx skills`, a remote rule, or a manual
 copy does **not** install the MCP server.
 
+This repository ships the standardized [Agent Plugins](https://agent-plugins.org/) layout
+(root `plugin.json`, `mcp.json`, and `skills/`), which Codex and Cursor load directly.
+`.claude-plugin/` plus `.mcp.json` remain for Claude Code. Use a recent Codex release; older
+releases only read the legacy `.codex-plugin/` manifest, which this repository no longer
+provides.
+
 ### Claude Code: skills + MCP
 
-First, add the companion marketplace. Enter only this command in Claude Code:
+First, add the marketplace. Enter only this command in Claude Code:
 
 ```text
-/plugin marketplace add luxonis/skills@companion
+/plugin marketplace add luxonis/skills
 ```
 
 After Claude confirms that the marketplace was added, install the plugin with a separate command:
@@ -112,7 +117,7 @@ After installation finishes, reload plugins with a third command:
 ```
 
 If you use the **Add Marketplace** dialog instead of the slash command, enter only
-`luxonis/skills@companion` in the marketplace source field. Do not paste the install or reload
+`luxonis/skills` in the marketplace source field. Do not paste the install or reload
 commands into that field.
 
 Claude Code may ask you to approve the `luxonis` MCP server the first time it loads. After
@@ -126,21 +131,13 @@ The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
 
-Codex permits one configured ref for a Git marketplace source. If the V1 `luxonis` marketplace
-or the `luxonis-v2-draft` marketplace is already installed, remove that plugin and marketplace
-before adding this branch:
+If an earlier `luxonis` or `luxonis-v2-draft` marketplace is already installed, remove that
+plugin and marketplace first (`codex plugin remove`, `codex plugin marketplace remove`).
+
+Add the marketplace from a terminal:
 
 ```bash
-codex plugin remove luxonis@luxonis
-codex plugin marketplace remove luxonis
-codex plugin remove luxonis-v2-draft@luxonis-v2-draft
-codex plugin marketplace remove luxonis-v2-draft
-```
-
-First, add the companion marketplace from a terminal:
-
-```bash
-codex plugin marketplace add luxonis/skills --ref companion
+codex plugin marketplace add luxonis/skills
 ```
 
 After that command finishes, install the plugin separately:
@@ -158,11 +155,17 @@ codex
 You can also open `/plugins` inside Codex, select the `luxonis-companion` marketplace, and
 install or enable the plugin there.
 
+### Cursor: skills + MCP
+
+Cursor loads the standardized Agent Plugins layout without changes. Install from the Cursor
+Marketplace, or load this repository from `~/.cursor/plugins/local` for development. Plugin
+installs include the bundled MCP server from `mcp.json`.
+
 ### Skills-only alternatives
 
 These options expose the skill instructions but do not install the bundled MCP server.
 
-For Cursor, install from the Cursor Marketplace or add a remote rule from:
+For Cursor, a remote rule (without the plugin) stays skills-only:
 
 ```text
 luxonis/skills
@@ -174,7 +177,7 @@ With `npx skills`:
 npx skills@latest add luxonis/skills
 ```
 
-Use the Claude Code or Codex plugin flow above when testing the complete companion experience.
+Use a plugin flow above for the complete experience.
 
 ## Product boundary
 
@@ -186,9 +189,9 @@ recording. Other specialists cover live inspect, a broken existing app, and cust
 conversion. This plugin does not train a model, construct a training dataset, invent
 proprietary SLAM, deliver a complete ROS system, or claim production certification.
 
-Current Luxonis facts come from MCP (`luxonis__code`). Skills add workflow around that:
-evidence before live claims, setup notes, a living brief and dated plan when the job is a
-product, and specialist handoff by name.
+Current Luxonis facts come from the Luxonis MCP server's `code` tool. Skills add workflow
+around that: evidence before live claims, setup notes, a living brief and dated plan when
+the job is a product, and specialist handoff by name.
 
 ## Validation
 
