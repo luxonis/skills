@@ -1,6 +1,6 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.json",
-  "name": "luxonis-companion",
+  "name": "luxonis",
   "description": "Luxonis OAK / DepthAI skills for coding agents.",
   "owner": {
     "name": "Luxonis",
@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "luxonis-companion",
+      "name": "luxonis",
       "source": "./",
       "description": "Skills for Luxonis questions, workspace and hardware setup, and OAK applications."
     }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic structure and no-device checks for the companion skills."""
+"""Deterministic structure and no-device checks for the Luxonis skills."""
 
 from __future__ import annotations
 
@@ -160,8 +160,8 @@ def check_manifests(errors: list[str]) -> None:
         if not isinstance(data, dict):
             continue
         name = data.get("name")
-        if name != "luxonis-companion":
-            fail(f"{key} plugin identity is {name!r}, expected luxonis-companion", errors)
+        if name != "luxonis":
+            fail(f"{key} plugin identity is {name!r}, expected luxonis", errors)
         if "v2-draft" in json.dumps(data):
             fail(f"{key} still references v2-draft", errors)
 
@@ -206,7 +206,7 @@ def check_scripts(errors: list[str]) -> None:
     if missing:
         fail(f"missing scripts: {missing}", errors)
         return
-    with tempfile.TemporaryDirectory(prefix="luxonis-companion-pycache-") as cache:
+    with tempfile.TemporaryDirectory(prefix="luxonis-skills-pycache-") as cache:
         env = os.environ.copy()
         env["PYTHONPYCACHEPREFIX"] = cache
         result = subprocess.run(
@@ -262,12 +262,12 @@ def main() -> int:
     check_manifests(errors)
     check_scripts(errors)
     if errors:
-        print("Companion validation failed:")
+        print("Validation failed:")
         for error in errors:
             print(f"- {error}")
         return 1
     skill_count = len(list(SKILLS.glob("*/SKILL.md")))
-    print(f"Companion validation passed: {skill_count} skills plus no-device fixtures")
+    print(f"Validation passed: {skill_count} skills plus no-device fixtures")
     return 0
 
 

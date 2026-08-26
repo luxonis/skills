@@ -1,6 +1,6 @@
 {
-  "name": "luxonis-companion",
-  "displayName": "Luxonis Companion",
+  "name": "luxonis",
+  "displayName": "Luxonis",
   "version": "0.1.0",
   "description": "Luxonis OAK / DepthAI skills for questions, workspace setup, hardware setup, and application work.",
   "author": {

@@ -30,7 +30,7 @@ Build an OAK application that scans barcodes on packages moving along a conveyor
 Claude Code plugin installs may namespace explicit skill commands:
 
 ```text
-/luxonis-companion:luxonis
+/luxonis:luxonis
 ```
 
 Codex supports explicit skill selection with:
@@ -107,7 +107,7 @@ First, add the marketplace. Enter only this command in Claude Code:
 After Claude confirms that the marketplace was added, install the plugin with a separate command:
 
 ```text
-/plugin install luxonis-companion@luxonis-companion
+/plugin install luxonis@luxonis
 ```
 
 After installation finishes, reload plugins with a third command:
@@ -131,9 +131,6 @@ The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
 
-If an earlier `luxonis` or `luxonis-v2-draft` marketplace is already installed, remove that
-plugin and marketplace first (`codex plugin remove`, `codex plugin marketplace remove`).
-
 Add the marketplace from a terminal:
 
 ```bash
@@ -143,7 +140,7 @@ codex plugin marketplace add luxonis/skills
 After that command finishes, install the plugin separately:
 
 ```bash
-codex plugin add luxonis-companion@luxonis-companion
+codex plugin add luxonis@luxonis
 ```
 
 Then start a new Codex session so it loads the bundled skills and MCP tools:
@@ -152,13 +149,16 @@ Then start a new Codex session so it loads the bundled skills and MCP tools:
 codex
 ```
 
-You can also open `/plugins` inside Codex, select the `luxonis-companion` marketplace, and
+You can also open `/plugins` inside Codex, select the `luxonis` marketplace, and
 install or enable the plugin there.
 
 ### Cursor: skills + MCP
 
-Cursor loads the standardized Agent Plugins layout without changes. Install from the Cursor
-Marketplace, or load this repository from `~/.cursor/plugins/local` for development. Plugin
+Cursor loads the standardized Agent Plugins layout without changes. The plugin is not yet
+listed on the Cursor Marketplace. Until it is, clone this repository into
+`~/.cursor/plugins/local/luxonis` (or symlink it there) and restart Cursor. On Cursor Teams
+or Enterprise, an admin can instead add this repository as a team marketplace (Dashboard →
+Plugins → Add Marketplace → Import from Repo) so members install it with one click. Plugin
 installs include the bundled MCP server from `mcp.json`.
 
 ### Skills-only alternatives
@@ -179,33 +179,20 @@ npx skills@latest add luxonis/skills
 
 Use a plugin flow above for the complete experience.
 
-## Product boundary
+## What this plugin does not do
 
-The entry skill gets MCP working, then answers Luxonis questions or routes workspace, hardware
-setup, and application work. `luxonis-workspace` owns host toolchain and always-on agent files.
-`luxonis-app` owns application work: a capability first-run, or a product brief plus dated
-plan and closed-loop proof. `luxonis-record` owns capturing and replaying a holistic
-recording. Other specialists cover live inspect, a broken existing app, and custom-model
-conversion. This plugin does not train a model, construct a training dataset, invent
-proprietary SLAM, deliver a complete ROS system, or claim production certification.
+This plugin does not train a model, construct a training dataset, invent proprietary SLAM,
+deliver a complete ROS system, or claim production certification. When a request needs one of
+those, the skills name it and stop, without calling the OAK use case impossible.
 
 Current Luxonis facts come from the Luxonis MCP server's `code` tool. Skills add workflow
 around that: evidence before live claims, setup notes, a living brief and dated plan when
 the job is a product, and specialist handoff by name.
 
-## Validation
+## Developing
 
-The repository contains deterministic checks for plugin structure, skill files, and local
-no-device fixtures:
-
-```bash
-python3 tests/validate_static.py
-```
-
-These checks do not replace representative agent benchmarks, customer testing, or real-device
-validation.
-
-See [the architecture](docs/architecture.md).
+Developer documentation lives under [`docs/`](docs/): [architecture](docs/architecture.md)
+and [testing](docs/testing.md).
 
 ## Support
 

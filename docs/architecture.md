@@ -1,7 +1,7 @@
-# Companion architecture
+# Plugin architecture
 
 The customer-facing product story lives in the [README](../README.md).
-This file is companion architecture for this skills repo, not the customer project's `docs/`
+This file is the architecture of this skills repo, not the customer project's `docs/`
 layout.
 
 ## Invocation
