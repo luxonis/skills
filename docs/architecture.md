@@ -40,8 +40,8 @@ into another skill.
 `luxonis-workspace` is the prerequisite when `AGENTS.md` is missing, or oakctl is missing and
 the job needs the host toolchain. Then continue the original job.
 
-oakctl is the host toolchain. Prefer `oakctl run-script` for host runs when installed
-`--help` lists it as a local DepthAI environment runner; do not invent subcommands.
+oakctl is the host toolchain. Prefer `oakctl run-script` for host runs when `oakctl --help`
+lists it as a local DepthAI environment runner; do not invent subcommands.
 
 ## Customer project files
 
@@ -73,8 +73,10 @@ paths. Do not require the user to rename by hand.
   convert vs integrate).
 - Version-sensitive facts come from the `code` tool on the Luxonis MCP server (`luxonis`,
   `https://mcp.luxonis.com/mcp`); the surfaced tool name varies by host, so never hardcode a
-  harness-prefixed form. Fallback: `https://docs.luxonis.com/llms.txt`, installed CLI
-  `--help`.
+  harness-prefixed form. Fallback: `https://docs.luxonis.com/llms.txt`. For oakctl commands
+  and flags, the installed `oakctl --help` outranks docs and MCP: the local version
+  (possibly older or beta) defines what is possible; suggest an oakctl update when it lacks
+  something current docs describe.
 - Canonical shared lines (the fact-source ladder, the host-runner rule) are duplicated per
   skill so each skill folder stays self-contained for per-skill installs;
   `tests/validate_static.py` enforces that they stay identical across skills.

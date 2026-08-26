@@ -29,10 +29,12 @@ Never invent DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Conf
 node names from MCP or a current example.
 
 Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
-observed behavior; memory is only for general reasoning. If observed host or device
-behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
-work from installed `--help` and local examples and name which facts are unverified.
+returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
+general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
+and MCP: the local version (possibly older or beta) defines what is possible here, so work from
+it and suggest an oakctl update when it lacks something current docs describe. If observed host
+or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
+offline, work from `oakctl --help` and local examples and name which facts are unverified.
 
 The source in use, MCP tool or live documentation, is referred to as <LUXONIS_CONTEXT/>
 below.

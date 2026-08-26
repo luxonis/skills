@@ -31,14 +31,16 @@ DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm node name
 or a current example.
 
 Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
-observed behavior; memory is only for general reasoning. If observed host or device
-behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
-work from installed `--help` and local examples and name which facts are unverified.
+returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
+general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
+and MCP: the local version (possibly older or beta) defines what is possible here, so work from
+it and suggest an oakctl update when it lacks something current docs describe. If observed host
+or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
+offline, work from `oakctl --help` and local examples and name which facts are unverified.
 
-oakctl is required. Prefer `oakctl run-script` for host runs when installed `--help` lists
-it as a local DepthAI environment runner; do not invent subcommands. If no host runner
-exists, run via the project env and still use oakctl for inspect and udev.
+oakctl is required. Prefer `oakctl run-script` for host runs when `oakctl --help` lists it as a local DepthAI
+environment runner; do not invent subcommands. If no host runner exists, run via the project
+env and still use oakctl for inspect and udev.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.
@@ -128,7 +130,7 @@ proof.
 - If a matching recording already exists, use it. Do not occupy the camera.
 
 **Standalone OAK App, or topology that cannot holistic-record:** do not hard-stop. Prove with
-`luxonis-inspect` (or the installed oakctl run path from `--help`) on a named claim. State
+`luxonis-inspect` (or the installed oakctl run path from `oakctl --help`) on a named claim. State
 that replay is pending. `luxonis-record` still stops if the topology cannot record — that is
 record's job, not a blocker for app "done" here.
 

@@ -25,10 +25,12 @@ oakctl subcommands. The current oakctl page:
 https://docs.luxonis.com/software-v3/oak-apps/oakctl.md.
 
 Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
-observed behavior; memory is only for general reasoning. If observed host or device
-behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
-work from installed `--help` and local examples and name which facts are unverified.
+returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
+general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
+and MCP: the local version (possibly older or beta) defines what is possible here, so work from
+it and suggest an oakctl update when it lacks something current docs describe. If observed host
+or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
+offline, work from `oakctl --help` and local examples and name which facts are unverified.
 
 ## 2. Explore
 
@@ -47,7 +49,7 @@ the command before quoting it. Current docs (verify): Linux/macOS
 `bash -c "$(curl -fsSL https://oakctl-releases.luxonis.com/oakctl-installer.sh)"`; Windows
 uses the installer linked from that page.
 
-Host udev/env: take current steps from MCP or installed `--help`. Ask before sudo.
+Host udev/env: take current steps from MCP or `oakctl --help`. Ask before sudo.
 
 Empty `oakctl list` is not "no device" — that fact lives in `luxonis-device-setup`.
 
@@ -63,9 +65,9 @@ Confirm with a v3 import in that env, not a guessed version string.
 Always-loaded invariants and pointers, not procedures. Seed from
 `assets/AGENTS.template.md`.
 
-Prefer `oakctl run-script` for host runs when installed `--help` lists it as a local
-DepthAI environment runner; do not invent subcommands. If no host runner exists, run via
-the project env and still use oakctl for inspect and udev. `oakctl hub run-script` (if
+Prefer `oakctl run-script` for host runs when `oakctl --help` lists it as a local DepthAI
+environment runner; do not invent subcommands. If no host runner exists, run via the project
+env and still use oakctl for inspect and udev. `oakctl hub run-script` (if
 present) is Hub-token scripts, not a generic host runner.
 
 Do not overwrite a hand-written `AGENTS.md`. Add or update a clearly delimited Luxonis

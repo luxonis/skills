@@ -25,10 +25,12 @@ https://docs.luxonis.com/software-v3/depthai/tutorials/holistic-record-replay.md
 invent DepthAI APIs or flags from memory. DepthAI v3 only.
 
 Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then installed CLI `--help`, then
-observed behavior; memory is only for general reasoning. If observed host or device
-behavior contradicts docs or MCP, trust the observation and note the conflict. If offline,
-work from installed `--help` and local examples and name which facts are unverified.
+returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
+general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
+and MCP: the local version (possibly older or beta) defines what is possible here, so work from
+it and suggest an oakctl update when it lacks something current docs describe. If observed host
+or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
+offline, work from `oakctl --help` and local examples and name which facts are unverified.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.
@@ -54,9 +56,9 @@ example. Do not author a new recorder from scratch.
 
 If this topology cannot holistic-record/replay, say so from current docs and stop.
 
-Prefer `oakctl run-script` for host runs when installed `--help` lists it as a local
-DepthAI environment runner; do not invent subcommands. If no host runner exists, run via
-the project env and still use oakctl for inspect and udev. Still copy
+Prefer `oakctl run-script` for host runs when `oakctl --help` lists it as a local DepthAI
+environment runner; do not invent subcommands. If no host runner exists, run via the project
+env and still use oakctl for inspect and udev. Still copy
 `scripts/holistic_record.py` into the project.
 
 ## 4. Device
