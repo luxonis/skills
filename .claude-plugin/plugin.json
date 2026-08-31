@@ -1,7 +1,7 @@
 {
   "name": "luxonis",
   "displayName": "Luxonis",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Luxonis OAK / DepthAI skills for questions, workspace setup, hardware setup, and application work.",
   "author": {
     "name": "Luxonis",

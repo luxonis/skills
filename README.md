@@ -96,7 +96,14 @@ This repository ships the standardized [Agent Plugins](https://agent-plugins.org
 releases only read the legacy `.codex-plugin/` manifest, which this repository no longer
 provides.
 
+If a `luxonis-companion` marketplace or plugin is already installed, remove it
+before adding this one. Hosts key installs by the old slug and version `0.1.0`,
+so an in-place upgrade keeps the Companion name and skips the new icon.
+
 ### Claude Code: skills + MCP
+
+If you previously installed `luxonis-companion@luxonis-companion`, uninstall that
+plugin and remove that marketplace, then run the commands below.
 
 First, add the marketplace. Enter only this command in Claude Code:
 
@@ -130,6 +137,13 @@ claude mcp list
 The output should list `luxonis` at `https://mcp.luxonis.com/mcp` as connected.
 
 ### Codex: skills + MCP
+
+If Codex still lists **Luxonis Companion**, remove that install first:
+
+```bash
+codex plugin remove luxonis-companion@luxonis-companion
+codex plugin marketplace remove luxonis-companion
+```
 
 Add the marketplace from a terminal:
 

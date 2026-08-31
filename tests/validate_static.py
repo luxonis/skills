@@ -138,6 +138,17 @@ def check_layout(errors: list[str]) -> None:
         fail("empty leftover skills/building/ remains", errors)
 
 
+def _plugin_relative_asset(value: object) -> Path | None:
+    if not isinstance(value, str) or not value.startswith("./"):
+        return None
+    path = (ROOT / value[2:]).resolve()
+    try:
+        path.relative_to(ROOT)
+    except ValueError:
+        return None
+    return path
+
+
 def check_manifests(errors: list[str]) -> None:
     paths = (
         ROOT / "plugin.json",
@@ -145,6 +156,7 @@ def check_manifests(errors: list[str]) -> None:
         ROOT / ".mcp.json",
         ROOT / ".claude-plugin/plugin.json",
         ROOT / ".claude-plugin/marketplace.json",
+        ROOT / ".agents/plugins/marketplace.json",
         ROOT / "tests/activation_cases.json",
     )
     parsed: dict[str, object] = {}
@@ -157,6 +169,7 @@ def check_manifests(errors: list[str]) -> None:
         "plugin.json",
         ".claude-plugin/plugin.json",
         ".claude-plugin/marketplace.json",
+        ".agents/plugins/marketplace.json",
     ):
         data = parsed.get(key)
         if not isinstance(data, dict):
@@ -164,15 +177,25 @@ def check_manifests(errors: list[str]) -> None:
         name = data.get("name")
         if name != "luxonis":
             fail(f"{key} plugin identity is {name!r}, expected luxonis", errors)
-        if "v2-draft" in json.dumps(data):
+        dumped = json.dumps(data)
+        if "v2-draft" in dumped:
             fail(f"{key} still references v2-draft", errors)
+        if "companion" in dumped.lower():
+            fail(f"{key} still uses the companion identity", errors)
 
     # Portable Agent Plugins manifests (https://agent-plugins.org) serve Codex, Cursor, and
     # other standard hosts; .claude-plugin/ plus .mcp.json remain for Claude Code.
+    # Codex also reads .agents/plugins/marketplace.json when present.
     for legacy in (".codex-plugin", ".cursor-plugin"):
         if (ROOT / legacy).exists():
             fail(f"legacy host manifest {legacy}/ remains; the root plugin.json replaces it", errors)
     portable = parsed.get("plugin.json")
+    claude_plugin = parsed.get(".claude-plugin/plugin.json")
+    if isinstance(portable, dict) and isinstance(claude_plugin, dict):
+        if portable.get("version") != claude_plugin.get("version"):
+            fail("plugin.json and .claude-plugin/plugin.json versions differ", errors)
+        if claude_plugin.get("displayName") != "Luxonis":
+            fail(".claude-plugin/plugin.json displayName is not Luxonis", errors)
     if isinstance(portable, dict):
         if portable.get("$schema") != "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json":
             fail("plugin.json is missing the Agent Plugins 1.0.0 $schema", errors)
@@ -182,6 +205,39 @@ def check_manifests(errors: list[str]) -> None:
         )
         if not isinstance(codex_interface, dict):
             fail("plugin.json is missing the com.openai interface extension", errors)
+        else:
+            if codex_interface.get("displayName") != "Luxonis":
+                fail("plugin.json Codex displayName is not Luxonis", errors)
+            if codex_interface.get("brandColor") != "#5724E8":
+                fail("plugin.json Codex brandColor is not #5724E8", errors)
+            for field, expected in (
+                ("logo", "./assets/icon.png"),
+                ("composerIcon", "./assets/composer-icon.svg"),
+            ):
+                value = codex_interface.get(field)
+                if value != expected:
+                    fail(f"plugin.json Codex {field} is {value!r}, expected {expected}", errors)
+                    continue
+                asset = _plugin_relative_asset(value)
+                if asset is None or not asset.is_file():
+                    fail(f"plugin.json Codex {field} does not resolve to a file: {value}", errors)
+    agents_marketplace = parsed.get(".agents/plugins/marketplace.json")
+    if isinstance(agents_marketplace, dict):
+        display = (
+            agents_marketplace.get("interface", {}).get("displayName")
+            if isinstance(agents_marketplace.get("interface"), dict)
+            else None
+        )
+        if display != "Luxonis":
+            fail(".agents/plugins/marketplace.json displayName is not Luxonis", errors)
+        plugins = agents_marketplace.get("plugins")
+        plugin_names = [entry.get("name") for entry in plugins] if isinstance(plugins, list) else []
+        if plugin_names != ["luxonis"]:
+            fail(
+                ".agents/plugins/marketplace.json plugins are "
+                f"{plugin_names!r}, expected ['luxonis']",
+                errors,
+            )
     portable_mcp = parsed.get("mcp.json")
     if isinstance(portable_mcp, dict):
         server = portable_mcp.get("mcpServers", {}).get("luxonis", {})

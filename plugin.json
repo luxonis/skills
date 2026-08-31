@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "luxonis",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Luxonis OAK / DepthAI skills for questions, workspace setup, hardware setup, and application work.",
   "author": {
     "name": "Luxonis",
@@ -42,7 +42,10 @@
           "Build or change this OAK application.",
           "Record this OAK scene for later replay.",
           "Inspect what my DepthAI pipeline produces."
-        ]
+        ],
+        "brandColor": "#5724E8",
+        "composerIcon": "./assets/composer-icon.svg",
+        "logo": "./assets/icon.png"
       }
     }
   }
