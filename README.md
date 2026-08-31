@@ -199,9 +199,9 @@ This plugin does not train a model, construct a training dataset, invent proprie
 deliver a complete ROS system, or claim production certification. When a request needs one of
 those, the skills name it and stop, without calling the OAK use case impossible.
 
-Current Luxonis facts come from the Luxonis MCP server's `code` tool. Skills add workflow
-around that: evidence before live claims, setup notes, a living brief and dated plan when
-the job is a product, and specialist handoff by name.
+Current Luxonis facts come from the Luxonis MCP tools (docs, oak-examples, and the model
+zoo). Skills add workflow around that: evidence before live claims, setup notes, a living
+brief and dated plan when the job is a product, and specialist handoff by name.
 
 ## Developing
 

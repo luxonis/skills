@@ -13,16 +13,16 @@ behavior. Process liveness is not proof.
 Opened image or parsed message evidence shows the claimed pipeline behavior, or **blocked**
 with the missing endpoint, topic, output, or decoder and one next action.
 
-Use the Luxonis MCP `code` tool for current inspect APIs. Never invent oakctl flags from
-memory.
+Never invent oakctl flags from memory.
 
-Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
-general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
-and MCP: the local version (possibly older or beta) defines what is possible here, so work from
-it and suggest an oakctl update when it lacks something current docs describe. If observed host
-or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
-offline, work from `oakctl --help` and local examples and name which facts are unverified.
+Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact example
+or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed behavior;
+memory is only for general reasoning. For oakctl commands and flags, the installed
+`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) defines what
+is possible here, so work from it and suggest an oakctl update when it lacks something current
+docs describe. If observed host or device behavior contradicts docs or MCP, trust the
+observation and note the conflict. If offline, work from `oakctl --help` and local examples and
+name which facts are unverified.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.

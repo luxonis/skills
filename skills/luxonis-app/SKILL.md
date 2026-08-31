@@ -26,17 +26,17 @@ Process liveness is not proof. **Blocked** means one named next action. Hardware
 
 ## 1. Current facts
 
-Use the Luxonis MCP `code` tool for current APIs, examples, and models. Never invent
-DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm node names from MCP
-or a current example.
+Never invent DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm node
+names from MCP or a current example.
 
-Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
-general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
-and MCP: the local version (possibly older or beta) defines what is possible here, so work from
-it and suggest an oakctl update when it lacks something current docs describe. If observed host
-or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
-offline, work from `oakctl --help` and local examples and name which facts are unverified.
+Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact example
+or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed behavior;
+memory is only for general reasoning. For oakctl commands and flags, the installed
+`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) defines what
+is possible here, so work from it and suggest an oakctl update when it lacks something current
+docs describe. If observed host or device behavior contradicts docs or MCP, trust the
+observation and note the conflict. If offline, work from `oakctl --help` and local examples and
+name which facts are unverified.
 
 oakctl is required. Prefer `oakctl run-script` for host runs when `oakctl --help` lists it as a local DepthAI
 environment runner; do not invent subcommands. If no host runner exists, run via the project

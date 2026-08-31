@@ -20,17 +20,18 @@ one next action.
 
 ## 1. Current facts
 
-Use the Luxonis MCP `code` tool for the current holistic record/replay tutorial (also at
-https://docs.luxonis.com/software-v3/depthai/tutorials/holistic-record-replay.md). Never
+Current holistic record/replay tutorial:
+https://docs.luxonis.com/software-v3/depthai/tutorials/holistic-record-replay.md. Never
 invent DepthAI APIs or flags from memory. DepthAI v3 only.
 
-Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
-general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
-and MCP: the local version (possibly older or beta) defines what is possible here, so work from
-it and suggest an oakctl update when it lacks something current docs describe. If observed host
-or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
-offline, work from `oakctl --help` and local examples and name which facts are unverified.
+Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact example
+or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed behavior;
+memory is only for general reasoning. For oakctl commands and flags, the installed
+`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) defines what
+is possible here, so work from it and suggest an oakctl update when it lacks something current
+docs describe. If observed host or device behavior contradicts docs or MCP, trust the
+observation and note the conflict. If offline, work from `oakctl --help` and local examples and
+name which facts are unverified.
 
 If `AGENTS.md` is missing, or oakctl is missing, name `luxonis-workspace` and follow it, then
 continue. Do not copy its procedure.

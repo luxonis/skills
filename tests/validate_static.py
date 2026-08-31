@@ -38,9 +38,9 @@ REMOVED = {
 # Canonical lines duplicated per skill (skills stay self-contained for per-skill installs).
 # Compared whitespace-normalized so wrapping may differ; wording may not.
 CANON_FACTS = (
-    "Best source first: the Luxonis MCP `code` tool, then the exact example or doc source "
-    "it returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory "
-    "is only for general reasoning. For oakctl commands and flags, the installed "
+    "Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact "
+    "example or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed "
+    "behavior; memory is only for general reasoning. For oakctl commands and flags, the installed "
     "`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) "
     "defines what is possible here, so work from it and suggest an oakctl update when it "
     "lacks something current docs describe. If observed host or device behavior "
@@ -52,9 +52,13 @@ CANON_RUNNER = (
     "DepthAI environment runner; do not invent subcommands. If no host runner exists, run "
     "via the project env and still use oakctl for inspect and udev."
 )
-# The harness-prefixed MCP tool name differs per host (and per install mode); skills must
-# name the server's native `code` tool instead of hardcoding one host's form.
-BANNED_TOOL_NAME = "luxonis__code"
+# Hosts prefix MCP tool names. Skills must not hardcode a harness-prefixed form, leftover
+# `code`-tool wording, or code-mode sandbox language.
+BANNED_MCP_PHRASES = (
+    "`code` tool",
+    "JavaScript sandbox",
+    "luxonis__",
+)
 
 
 def normalized(text: str) -> str:
@@ -119,12 +123,14 @@ def check_no_hardcoded_tool_name(errors: list[str]) -> None:
     for path in sorted(ROOT.rglob("*.md")):
         if ".git" in path.parts:
             continue
-        if BANNED_TOOL_NAME in path.read_text(encoding="utf-8"):
-            fail(
-                f"hardcoded MCP tool name `{BANNED_TOOL_NAME}` in {path};"
-                " name the Luxonis MCP `code` tool instead",
-                errors,
-            )
+        text = path.read_text(encoding="utf-8")
+        for phrase in BANNED_MCP_PHRASES:
+            if phrase in text:
+                fail(
+                    f"banned MCP wording {phrase!r} in {path}; "
+                    "write 'the Luxonis MCP tools' and never a harness-prefixed form",
+                    errors,
+                )
 
 
 def check_layout(errors: list[str]) -> None:

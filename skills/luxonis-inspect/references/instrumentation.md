@@ -1,7 +1,7 @@
 # Inspection instrumentation
 
 Use this only when this session is already allowed to change application code. Verify exact
-APIs against installed DepthAI v3 or a current example from the Luxonis MCP `code` tool.
+APIs against installed DepthAI v3 or a current example from the Luxonis MCP tools.
 
 Read the existing source and reuse its remote connection, pipeline registration, and topics.
 Add only missing behavior-relevant outputs. Do not expose every stream by default. Do not

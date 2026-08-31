@@ -71,8 +71,8 @@ paths. Do not require the user to rename by hand.
 - `SKILL.md` is the always-needed procedure.
 - `references/` exist only for branches not used every run (inspect instrumentation, model
   convert vs integrate).
-- Version-sensitive facts come from the `code` tool on the Luxonis MCP server (`luxonis`,
-  `https://mcp.luxonis.com/mcp`); the surfaced tool name varies by host, so never hardcode a
+- Version-sensitive facts come from the Luxonis MCP tools on the Luxonis MCP server (`luxonis`,
+  `https://mcp.luxonis.com/mcp`); the surfaced tool names vary by host, so never hardcode a
   harness-prefixed form. Fallback: `https://docs.luxonis.com/llms.txt`. For oakctl commands
   and flags, the installed `oakctl --help` outranks docs and MCP: the local version
   (possibly older or beta) defines what is possible; suggest an oakctl update when it lacks

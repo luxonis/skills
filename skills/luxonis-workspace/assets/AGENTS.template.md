@@ -4,7 +4,7 @@ This is a Luxonis OAK / DepthAI v3 project.
 
 ## Facts
 
-- Current APIs, examples, and models come from the `code` tool on the Luxonis MCP server (`luxonis`, `https://mcp.luxonis.com/mcp`); the surfaced tool name varies by host. Never invent DepthAI APIs from memory.
+- Current APIs, examples, and models come from the Luxonis MCP tools on the Luxonis MCP server (`luxonis`, `https://mcp.luxonis.com/mcp`); the surfaced tool names vary by host. Never invent DepthAI APIs from memory.
 - DepthAI v3 only. Do not mix v2 APIs.
 - Confirm node names from MCP and oakctl flags from `oakctl --help`. The installed oakctl
   version defines what is possible here; suggest an oakctl update when it lacks something

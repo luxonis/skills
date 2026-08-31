@@ -1,7 +1,7 @@
 # Convert a custom model
 
 Produce a target-platform NN Archive from an approved source. Retrieve the current
-ModelConverter invocation from the Luxonis MCP `code` tool; do not reuse remembered flags.
+ModelConverter invocation from the Luxonis MCP tools; do not reuse remembered flags.
 
 ## Path
 
@@ -11,7 +11,7 @@ conversion image). If those prerequisites are missing, name the install step.
 Use HubAI only when Hub is already in this session: `HUBAI_API_KEY` is already set,
 `hubai` is already logged in, or the user asked to convert on Hub or in the cloud. Do
 not request a Hub account or API key to start conversion. If using HubAI, retrieve
-current Hub conversion APIs from the MCP `code` tool and keep Hub credentials in the
+current Hub conversion APIs from the Luxonis MCP tools and keep Hub credentials in the
 process environment only.
 
 Use a dedicated conversion environment and record Python, DepthAI, converter, and related

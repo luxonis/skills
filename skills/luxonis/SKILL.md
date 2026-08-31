@@ -14,13 +14,12 @@ boot failure, suspected calibration) goes to `support@luxonis.com`.
 
 ## 1. Can we work?
 
-Current Luxonis facts come from the `code` tool on the Luxonis MCP server (`luxonis`,
-`https://mcp.luxonis.com/mcp`), a JavaScript sandbox over models, examples, and docs. The
-surfaced tool name varies by host. In order:
+Current Luxonis facts come from the Luxonis MCP server (`luxonis`,
+`https://mcp.luxonis.com/mcp`). The surfaced tool names vary by host. In order:
 
-1. If the tool is available, use it. Do not announce a health check.
-2. If it is missing and this host supports MCP, tell the user how to enable it here and stop
-   until it surfaces. The full plugin install bundles the server; otherwise add
+1. If those tools are available, use them. Do not announce a health check.
+2. If they are missing and this host supports MCP, tell the user how to enable the server here
+   and stop until it surfaces. The full plugin install bundles the server; otherwise add
    `https://mcp.luxonis.com/mcp` in the host's MCP settings.
 3. If this host cannot use MCP, or configured calls fail, use
    `https://docs.luxonis.com/llms.txt` and say facts come from the docs fallback.
@@ -28,15 +27,16 @@ surfaced tool name varies by host. In order:
 Never invent DepthAI APIs from memory. DepthAI v3 only; do not mix v2 APIs. Confirm current
 node names from MCP or a current example.
 
-Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
-general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
-and MCP: the local version (possibly older or beta) defines what is possible here, so work from
-it and suggest an oakctl update when it lacks something current docs describe. If observed host
-or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
-offline, work from `oakctl --help` and local examples and name which facts are unverified.
+Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact example
+or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed behavior;
+memory is only for general reasoning. For oakctl commands and flags, the installed
+`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) defines what
+is possible here, so work from it and suggest an oakctl update when it lacks something current
+docs describe. If observed host or device behavior contradicts docs or MCP, trust the
+observation and note the conflict. If offline, work from `oakctl --help` and local examples and
+name which facts are unverified.
 
-The source in use, MCP tool or live documentation, is referred to as <LUXONIS_CONTEXT/>
+The source in use, MCP tools or live documentation, is referred to as <LUXONIS_CONTEXT/>
 below.
 
 ## 2. Workspace

@@ -20,17 +20,17 @@ discovery, not proving a stream, not building an app, not product questions.
 
 ## 1. Current facts
 
-Use the Luxonis MCP `code` tool for current installer, udev, and CLI facts. Never invent
-oakctl subcommands. The current oakctl page:
+Never invent oakctl subcommands. The current oakctl page:
 https://docs.luxonis.com/software-v3/oak-apps/oakctl.md.
 
-Best source first: the Luxonis MCP `code` tool, then the exact example or doc source it
-returns, then `https://docs.luxonis.com/llms.txt`, then observed behavior; memory is only for
-general reasoning. For oakctl commands and flags, the installed `oakctl --help` outranks docs
-and MCP: the local version (possibly older or beta) defines what is possible here, so work from
-it and suggest an oakctl update when it lacks something current docs describe. If observed host
-or device behavior contradicts docs or MCP, trust the observation and note the conflict. If
-offline, work from `oakctl --help` and local examples and name which facts are unverified.
+Best source first: the Luxonis MCP tools (surfaced names vary by host), then the exact example
+or doc source they return, then `https://docs.luxonis.com/llms.txt`, then observed behavior;
+memory is only for general reasoning. For oakctl commands and flags, the installed
+`oakctl --help` outranks docs and MCP: the local version (possibly older or beta) defines what
+is possible here, so work from it and suggest an oakctl update when it lacks something current
+docs describe. If observed host or device behavior contradicts docs or MCP, trust the
+observation and note the conflict. If offline, work from `oakctl --help` and local examples and
+name which facts are unverified.
 
 ## 2. Explore
 
