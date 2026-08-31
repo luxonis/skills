@@ -70,6 +70,5 @@ If conversion details would help the next session, write a short note next to th
 ## Guardrails
 
 - Ask before cloud upload, global pip, or publishing an archive.
-- Keep `HUBAI_API_KEY` and similar credentials in the process environment only.
 - Never compile DepthAI from source.
 - Never run competing processes against one device.
