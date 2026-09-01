@@ -64,6 +64,7 @@ Name the sibling skill and follow it. Do not copy its procedure here.
 - Hardware working / camera not found → `luxonis-device-setup`
 - Build or change an application → `luxonis-app`
 - Holistic recording → `luxonis-record`
+- Live inspect of a running pipeline → `luxonis-inspect`
 - Existing app failing → `luxonis-troubleshoot`
 - Custom not-Zoo-ready model → `luxonis-model`
 

@@ -9,6 +9,8 @@ Run the deterministic checks from the plugin root:
 python3 tests/validate_static.py
 ```
 
+GitHub Actions runs the same command on push and pull request.
+
 The test layers are:
 
 1. Static structure: eight skills, plugin identity, referenced files, scripts.

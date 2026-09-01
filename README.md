@@ -81,6 +81,13 @@ Stay out of `docs/`: **`recordings/`** (holistic source recordings from `luxonis
 If a folder still has root `PROJECT_BRIEF.md`, `POC_PLAN.md`, or `DEVICE.md`, skills read
 those and write the new paths.
 
+## Upgrading from 1.x
+
+2.0 replaces the 1.x skill names. `luxonis-guide`, `luxonis-project-interview`, and
+`luxonis-build-poc` are gone; start from `luxonis`. Reinstall or reload the plugin so the
+host picks up the new skills. Root `PROJECT_BRIEF.md`, `POC_PLAN.md`, and `DEVICE.md` are
+still read; new work writes `docs/`.
+
 ## Install the full plugin
 
 Run each command separately and wait for it to finish before entering the next command.
