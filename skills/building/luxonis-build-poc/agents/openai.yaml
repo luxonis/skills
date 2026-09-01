@@ -1,5 +1,0 @@
-interface:
-  display_name: "Luxonis Build POC"
-  short_description: "Manual-only skill for building a thin, runnable Luxonis proof of concept from a brief."
-policy:
-  allow_implicit_invocation: false

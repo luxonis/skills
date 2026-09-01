@@ -1,0 +1,52 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "luxonis",
+  "version": "2.0.0",
+  "description": "Luxonis OAK / DepthAI skills for questions, workspace setup, hardware setup, and application work.",
+  "author": {
+    "name": "Luxonis",
+    "email": "support@luxonis.com",
+    "url": "https://www.luxonis.com"
+  },
+  "homepage": "https://github.com/luxonis/skills",
+  "repository": "https://github.com/luxonis/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "luxonis",
+    "oak",
+    "depthai",
+    "oak4",
+    "rvc2",
+    "rvc4",
+    "camera",
+    "computer-vision"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Luxonis",
+        "shortDescription": "OAK / DepthAI entry skill and specialists.",
+        "longDescription": "Start from Luxonis questions, device choice, or hardware setup. Bootstrap the folder as a Luxonis workspace, then build or change an OAK application with a brief, dated plan, and closed-loop proof. Specialists cover holistic record/replay, live inspect, troubleshooting, and custom models.",
+        "developerName": "Luxonis",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Interactive",
+          "Write",
+          "MCP"
+        ],
+        "websiteURL": "https://www.luxonis.com",
+        "defaultPrompt": [
+          "Help with this Luxonis OAK / DepthAI work.",
+          "Make this folder a Luxonis agent workspace.",
+          "Get my OAK hardware working for development.",
+          "Build or change this OAK application.",
+          "Record this OAK scene for later replay.",
+          "Inspect what my DepthAI pipeline produces."
+        ],
+        "brandColor": "#5724E8",
+        "composerIcon": "./assets/composer-icon.svg",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}

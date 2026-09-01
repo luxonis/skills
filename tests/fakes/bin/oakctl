@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+"""Bounded oakctl inspect fake for disposable behavior tests."""
+
+from __future__ import annotations
+
+import json
+import os
+import sys
+from pathlib import Path
+
+
+def value_after(args, flag, default=None):
+    if flag not in args:
+        return default
+    return args[args.index(flag) + 1]
+
+
+def log_call(args):
+    path = os.environ.get("LUXONIS_FAKE_LOG")
+    if path:
+        with Path(path).open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"argv": args}) + "\n")
+
+
+def reject_positional_endpoint(args, topic_required=False):
+    value_flags = {"--url", "--device", "--timeout", "--count", "--seconds", "--out"}
+    positionals = []
+    index = 2
+    while index < len(args):
+        item = args[index]
+        if item in value_flags:
+            index += 2
+            continue
+        if item.startswith("-"):
+            index += 1
+            continue
+        positionals.append(item)
+        index += 1
+    expected = 1 if topic_required else 0
+    if len(positionals) != expected:
+        print("unexpected positional endpoint; use --url or --device", file=sys.stderr)
+        raise SystemExit(2)
+
+
+def main():
+    args = sys.argv[1:]
+    log_call(args)
+    if not args or args == ["--version"]:
+        print("oakctl fixture 0.1")
+        return 0
+    if args[:2] == ["inspect", "--help"] or args == ["inspect", "--help"]:
+        print("fixture inspect: topics pipeline snapshot frames dump; use --timeout")
+        return 0
+    if len(args) >= 3 and args[0] == "inspect" and "--help" in args[2:]:
+        print(f"fixture inspect {args[1]} help; use --url or --device and bounded capture options")
+        return 0
+    if args[:2] == ["inspect", "topics"]:
+        reject_positional_endpoint(args)
+        print(json.dumps({"topics": ["camera", "barcodes", "annotated"]}))
+        return 0
+    if args[:2] == ["inspect", "pipeline"]:
+        reject_positional_endpoint(args)
+        print(json.dumps({"nodes": ["Camera", "BarcodeDecoder", "RemoteConnection"]}))
+        return 0
+    if args[:2] == ["inspect", "dump"]:
+        reject_positional_endpoint(args, topic_required=True)
+        print(json.dumps({"topic": "barcodes", "value": "SKU-0042", "track_id": 7}))
+        print(json.dumps({"topic": "barcodes", "value": "SKU-0177", "track_id": 8}))
+        return 0
+    if args[:2] == ["inspect", "frames"]:
+        reject_positional_endpoint(args, topic_required=True)
+        out = Path(value_after(args, "--out", "."))
+        out.mkdir(parents=True, exist_ok=True)
+        count = int(value_after(args, "--count", "1"))
+        for index in range(count):
+            (out / f"frame-{index + 1}.pgm").write_text(
+                "P2\n2 2\n255\n0 255\n255 0\n", encoding="ascii"
+            )
+        print(json.dumps({"saved": count, "directory": str(out)}))
+        return 0
+    if args[:2] == ["inspect", "snapshot"]:
+        reject_positional_endpoint(args)
+        out = Path(value_after(args, "--out", "."))
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "manifest.json").write_text(
+            json.dumps({"topics": ["camera", "barcodes", "annotated"]}), encoding="utf-8"
+        )
+        print(json.dumps({"saved": str(out / "manifest.json")}))
+        return 0
+    print("unsupported fake oakctl command", file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
