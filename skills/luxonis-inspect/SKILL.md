@@ -78,6 +78,32 @@ unbounded inspect process running.
 Topics may appear only after the first message. Produce representative input before diagnosing
 an absent topic.
 
+`frames` and `snapshot` decode only the encodings that their error lists (oakctl 0.31.1: JPEG,
+PNG, BGR/RGB888, GRAY8). They fail on an NV12 camera topic or a RAW16 depth topic, and
+`snapshot` fails as a whole when one advertised topic fails. Capture such a topic with
+`oakctl inspect dump <topic> --count 1` into a `.jsonl` file: `message.fb` holds `type`,
+`width`, `height`, `stride`, and the plane offsets, and `message.data` holds the frame bytes
+as base64. Decode it in the project env:
+
+```python
+import base64, json
+import numpy as np
+
+msg = json.loads(open("<evidence-dir>/<topic>.jsonl").readline())["message"]
+fb, raw = msg["fb"], base64.b64decode(msg["data"])
+h, w, off = fb["height"], fb["width"], fb.get("p1Offset", 0)
+if fb["type"] == "RAW16":  # StereoDepth depth: millimeters by default, 0 = invalid
+    stride = fb.get("stride") or w * 2
+    depth = np.frombuffer(raw, np.uint16, h * stride // 2, off).reshape(h, stride // 2)[:, :w]
+elif fb["type"] == "NV12":
+    import cv2
+    stride = fb.get("stride") or w
+    uv_off = fb.get("p2Offset") or off + h * stride
+    y = np.frombuffer(raw, np.uint8, h * stride, off).reshape(h, stride)
+    uv = np.frombuffer(raw, np.uint8, h // 2 * stride, uv_off).reshape(h // 2, stride)
+    bgr = cv2.cvtColor(np.vstack([y[:, :w], uv[:, :w]]), cv2.COLOR_YUV2BGR_NV12)
+```
+
 Create a unique run directory under `evidence/` (not under `docs/`), with a separate
 subdirectory per image topic so common frame filenames cannot overwrite each other. Next
 session does not depend on `evidence/`.
@@ -89,8 +115,8 @@ encoding, scene content, crop framing, overlay alignment, labels, confidence, co
 units, timestamps, track state, and whether the observation matches the claimed behavior.
 
 A graph and topic list are structural evidence. Snapshot values may be unsynchronized and are
-not a substitute for a temporal sample. Unsupported encodings may need another bounded
-observation path; do not change the application merely to conceal an inspector limitation.
+not a substitute for a temporal sample. For an unsupported encoding, use the `dump` path in
+step 4; do not change the application merely to conceal an inspector limitation.
 
 When code changes are needed, keep the capture command stable, change one cause, restart, and
 rerun the same capture.
