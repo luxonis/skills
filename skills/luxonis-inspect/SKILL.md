@@ -82,8 +82,8 @@ an absent topic.
 PNG, BGR/RGB888, GRAY8). They fail on an NV12 camera topic or a RAW16 depth topic, and
 `snapshot` fails as a whole when one advertised topic fails. Capture such a topic with
 `oakctl inspect dump <topic> --count 1` into a `.jsonl` file: `message.fb` holds `type`,
-`width`, `height`, `stride`, and `p2Offset`, and `message.data` holds the frame bytes as
-base64. Decode it in the project env:
+`width`, `height`, `stride`, and the plane offsets, and `message.data` holds the frame bytes
+as base64. Decode it in the project env:
 
 ```python
 import base64, json
@@ -91,14 +91,17 @@ import numpy as np
 
 msg = json.loads(open("<evidence-dir>/<topic>.jsonl").readline())["message"]
 fb, raw = msg["fb"], base64.b64decode(msg["data"])
-h, w, stride = fb["height"], fb["width"], fb["stride"]
-if fb["type"] == "RAW16":  # StereoDepth depth: millimeters, 0 = invalid
-    depth = np.frombuffer(raw, np.uint16).reshape(h, stride // 2)[:, :w]
+h, w, off = fb["height"], fb["width"], fb.get("p1Offset", 0)
+if fb["type"] == "RAW16":  # StereoDepth depth: millimeters by default, 0 = invalid
+    stride = fb.get("stride") or w * 2
+    depth = np.frombuffer(raw, np.uint16, h * stride // 2, off).reshape(h, stride // 2)[:, :w]
 elif fb["type"] == "NV12":
     import cv2
-    y = np.frombuffer(raw, np.uint8, stride * h).reshape(h, stride)
-    uv = np.frombuffer(raw, np.uint8, stride * h // 2, fb["p2Offset"]).reshape(h // 2, stride)
-    bgr = cv2.cvtColor(np.vstack([y, uv])[:, :w], cv2.COLOR_YUV2BGR_NV12)
+    stride = fb.get("stride") or w
+    uv_off = fb.get("p2Offset") or off + h * stride
+    y = np.frombuffer(raw, np.uint8, h * stride, off).reshape(h, stride)
+    uv = np.frombuffer(raw, np.uint8, h // 2 * stride, uv_off).reshape(h // 2, stride)
+    bgr = cv2.cvtColor(np.vstack([y[:, :w], uv[:, :w]]), cv2.COLOR_YUV2BGR_NV12)
 ```
 
 Create a unique run directory under `evidence/` (not under `docs/`), with a separate
