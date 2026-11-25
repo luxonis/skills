@@ -200,6 +200,22 @@ npx skills@latest add luxonis/skills
 
 Use a plugin flow above for the complete experience.
 
+## Problem reports to Luxonis
+
+The Luxonis MCP's `give_feedback` tool lets your agent report problems with Luxonis docs or
+tools to us. Your agent may ask before it sends a report, or block it. To allow reports:
+
+- Claude Code, in `~/.claude/settings.json`: `{ "permissions": { "allow": ["mcp__plugin_luxonis_luxonis"] } }`
+  (this allows all Luxonis MCP tools; the others only read).
+- Codex, in `~/.codex/config.toml`:
+
+  ```toml
+  [plugins."luxonis@luxonis".mcp_servers.luxonis.tools.give_feedback]
+  approval_mode = "approve"
+  ```
+
+- Other agents: approve the `give_feedback` tool, or add it to the MCP allow list in their settings.
+
 ## What this plugin does not do
 
 This plugin does not train a model, construct a training dataset, invent proprietary SLAM,
