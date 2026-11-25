@@ -204,10 +204,13 @@ Use a plugin flow above for the complete experience.
 
 The Luxonis MCP server has a `give_feedback` tool. When your agent finds a problem with Luxonis
 docs, examples, models, DepthAI, device software, or tools, it may send Luxonis a short report
-without being asked: what failed, the steps, the error text, and software versions. The tool
-tells the agent to leave out secrets, serial numbers, device IDs, IP addresses, local file
-paths, and names of people, customers, or projects. Luxonis also receives the name and version
-of your MCP client.
+without being asked. A report has a message written by the agent (what failed, the steps or
+command, the error text, and the DepthAI version, device, and OS when known), a category, and
+optionally the name of the tool that failed. When your client sends them, Luxonis also receives
+its name and version and the MCP protocol version. The tool tells the agent to leave out
+secrets, serial numbers, device IDs, IP addresses, local file paths, and names of people,
+customers, or projects. Luxonis stores the report as the agent wrote it, so leaving those out is
+up to the agent.
 
 Your coding agent decides whether a report goes out. Depending on its permission settings, it
 sends the report, asks you first, or blocks it and tells you, for example "Automatic approval
@@ -233,7 +236,9 @@ Codex, in `~/.codex/config.toml`:
 approval_mode = "approve"
 ```
 
-With either setting, your agent no longer asks or reviews before it sends a report.
+These settings remove the per-call prompt or review for this one tool. They do not override a
+stricter rule: in Claude Code, a matching `deny` or `ask` rule still wins over `allow`, and in
+Codex, strict auto review still reviews every call.
 
 ## What this plugin does not do
 
