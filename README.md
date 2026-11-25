@@ -214,6 +214,8 @@ tools to us. Your agent may ask before it sends a report, or block it. To allow 
   approval_mode = "approve"
   ```
 
+- Other agents: approve the `give_feedback` tool, or add it to the MCP allow list in their settings.
+
 ## What this plugin does not do
 
 This plugin does not train a model, construct a training dataset, invent proprietary SLAM,
