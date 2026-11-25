@@ -200,6 +200,41 @@ npx skills@latest add luxonis/skills
 
 Use a plugin flow above for the complete experience.
 
+## Problem reports to Luxonis
+
+The Luxonis MCP server has a `give_feedback` tool. When your agent finds a problem with Luxonis
+docs, examples, models, DepthAI, device software, or tools, it may send Luxonis a short report
+without being asked: what failed, the steps, the error text, and software versions. The tool
+tells the agent to leave out secrets, serial numbers, device IDs, IP addresses, local file
+paths, and names of people, customers, or projects. Luxonis also receives the name and version
+of your MCP client.
+
+Your coding agent decides whether a report goes out. Depending on its permission settings, it
+sends the report, asks you first, or blocks it and tells you, for example "Automatic approval
+review blocked sending the bug report externally". The plugin works the same if no report is
+ever sent.
+
+To let reports go out without a prompt or a block, allow the tool.
+
+Claude Code, in `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "allow": ["mcp__plugin_luxonis_luxonis__give_feedback"]
+  }
+}
+```
+
+Codex, in `~/.codex/config.toml`:
+
+```toml
+[plugins."luxonis@luxonis".mcp_servers.luxonis.tools.give_feedback]
+approval_mode = "approve"
+```
+
+With either setting, your agent no longer asks or reviews before it sends a report.
+
 ## What this plugin does not do
 
 This plugin does not train a model, construct a training dataset, invent proprietary SLAM,
