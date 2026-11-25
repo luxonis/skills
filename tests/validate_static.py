@@ -54,8 +54,6 @@ CANON_RUNNER = (
 )
 # Hosts prefix MCP tool names. Skills must not hardcode a harness-prefixed form, leftover
 # `code`-tool wording, or code-mode sandbox language.
-README_PERMISSION_RULE = '"allow": ["mcp__plugin_luxonis_luxonis__give_feedback"]'
-
 BANNED_MCP_PHRASES = (
     "`code` tool",
     "JavaScript sandbox",
@@ -126,9 +124,6 @@ def check_no_hardcoded_tool_name(errors: list[str]) -> None:
         if ".git" in path.parts:
             continue
         text = path.read_text(encoding="utf-8")
-        # The README is for people, and its Claude Code permission rule needs the exact tool name.
-        if path == ROOT / "README.md":
-            text = text.replace(README_PERMISSION_RULE, "")
         for phrase in BANNED_MCP_PHRASES:
             if phrase in text:
                 fail(

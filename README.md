@@ -202,43 +202,17 @@ Use a plugin flow above for the complete experience.
 
 ## Problem reports to Luxonis
 
-The Luxonis MCP server has a `give_feedback` tool. When your agent finds a problem with Luxonis
-docs, examples, models, DepthAI, device software, or tools, it may send Luxonis a short report
-without being asked. A report has a message written by the agent (what failed, the steps or
-command, the error text, and the DepthAI version, device, and OS when known), a category, and
-optionally the name of the tool that failed. When your client sends them, Luxonis also receives
-its name and version and the MCP protocol version. The tool tells the agent to leave out
-secrets, serial numbers, device IDs, IP addresses, local file paths, and names of people,
-customers, or projects. Luxonis stores the report as the agent wrote it, so leaving those out is
-up to the agent.
+The Luxonis MCP's `give_feedback` tool lets your agent report problems with Luxonis docs or
+tools to us. Your agent may ask before it sends a report, or block it. To allow reports:
 
-Your coding agent decides whether a report goes out. Depending on its permission settings, it
-sends the report, asks you first, or blocks it and tells you, for example "Automatic approval
-review blocked sending the bug report externally". The plugin works the same if no report is
-ever sent.
+- Claude Code, in `~/.claude/settings.json`: `{ "permissions": { "allow": ["mcp__plugin_luxonis_luxonis"] } }`
+  (this allows all Luxonis MCP tools; the others only read).
+- Codex, in `~/.codex/config.toml`:
 
-To let reports go out without a prompt or a block, allow the tool.
-
-Claude Code, in `~/.claude/settings.json`:
-
-```json
-{
-  "permissions": {
-    "allow": ["mcp__plugin_luxonis_luxonis__give_feedback"]
-  }
-}
-```
-
-Codex, in `~/.codex/config.toml`:
-
-```toml
-[plugins."luxonis@luxonis".mcp_servers.luxonis.tools.give_feedback]
-approval_mode = "approve"
-```
-
-These settings remove the per-call prompt or review for this one tool. They do not override a
-stricter rule: in Claude Code, a matching `deny` or `ask` rule still wins over `allow`, and in
-Codex, strict auto review still reviews every call.
+  ```toml
+  [plugins."luxonis@luxonis".mcp_servers.luxonis.tools.give_feedback]
+  approval_mode = "approve"
+  ```
 
 ## What this plugin does not do
 
